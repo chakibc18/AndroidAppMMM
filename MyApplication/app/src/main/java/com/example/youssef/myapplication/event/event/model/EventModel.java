@@ -64,7 +64,7 @@ public class EventModel
 
     private String mots_cles_fr;
 
-    private String[] geolocalisation;
+    private String geolocalisation;
 
     private String pays;
 
@@ -120,7 +120,7 @@ public class EventModel
 
     private String identifiant;
 
-    public EventModel(JSONObject obj){
+    public EventModel(JSONObject obj) throws JSONException {
         this.code_postal = setAttribute(obj, "titre_fr");
         this.date_debut_jour = setAttribute(obj, "date_debut_jour");
         this.adresse = setAttribute(obj, "adresse");
@@ -146,13 +146,10 @@ public class EventModel
         this.description_longue_html_fr = setAttribute(obj, "description_longue_html_fr");
         this.mots_cles_fr = setAttribute(obj, "mots_cles_fr");
 
-        try {
-            JSONArray tmpGeoLocal = obj.getJSONArray("geolocalisation");
-            this.geolocalisation = new String[]{tmpGeoLocal.getString(0), tmpGeoLocal.getString(1)};
-        }
-        catch (JSONException e) {
-            Log.e(this.getClass().getSimpleName(), e.toString());
-        }
+
+        JSONArray tmpGeoLocal = obj.getJSONArray("geolocalisation");
+        this.geolocalisation = tmpGeoLocal.getString(0)+','+tmpGeoLocal.getString(1);
+
         this.pays = setAttribute(obj, "pays");
         this.derniere_ouverture = setAttribute(obj, "derniere_ouverture");
         this.date_fin_jour = setAttribute(obj, "date_fin_jour");
@@ -432,12 +429,12 @@ public class EventModel
         this.mots_cles_fr = mots_cles_fr;
     }
 
-    public String[] getGeolocalisation ()
+    public String getGeolocalisation ()
     {
         return geolocalisation;
     }
 
-    public void setGeolocalisation (String[] geolocalisation)
+    public void setGeolocalisation (String geolocalisation)
     {
         this.geolocalisation = geolocalisation;
     }

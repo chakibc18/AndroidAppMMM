@@ -67,7 +67,7 @@ public class AdvancedSearch extends Fragment {
         dialog.setTitle("Title...");
         datePicker = (DatePicker) dialog.findViewById(R.id.datePicker);
 
-        Log.e("visible ?", String.valueOf(datePicker.getVisibility()));
+        //Log.e("visible ?", String.valueOf(datePicker.getVisibility()));
 
         date.setOnClickListener(new View.OnClickListener() {
 
@@ -79,7 +79,7 @@ public class AdvancedSearch extends Fragment {
 
                     @Override
                     public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        Log.i("DatePicker", year + "-" + monthOfYear + "-" + dayOfMonth);
+                        //Log.i("DatePicker", year + "-" + monthOfYear + "-" + dayOfMonth);
                         int month = monthOfYear + 1;
                         date.setText(dayOfMonth + "/" + month + "/" + year);
                         dialog.dismiss();
@@ -97,7 +97,7 @@ public class AdvancedSearch extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("Print args", getArgs().toString());
+                //Log.d("Print args", getArgs().toString());
                 listEvent.advancedSeach = buildSelection(getArgs());
                 activity.replaceFragment(activity.getRecyclerFragment(),R.id.flContainer);
                 listEvent.getLoaderManager().restartLoader(0,null,listEvent);

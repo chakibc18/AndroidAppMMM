@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.youssef.myapplication.data.DbContract;
-import com.example.youssef.myapplication.event.event.model.MyObject;
 import com.example.youssef.myapplication.R;
 
 import java.util.Arrays;
@@ -63,7 +62,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 int curTitle = mCursor.getColumnIndex(DbContract.MenuEntry.COLUMN_TITRE_FR);
                 int curDesc =  mCursor.getColumnIndex(DbContract.MenuEntry.COLUMN_DESCRIPTION_FR);
                 int curImage = mCursor.getColumnIndex(DbContract.MenuEntry.COLUMN_APERCU);
-                Log.e("test getCulmnNames", Arrays.toString(mCursor.getColumnNames()));
+                //Log.e("test getCulmnNames", Arrays.toString(mCursor.getColumnNames()));
 
                 String title = mCursor.getString(curTitle);
                 String image = mCursor.getString(curImage);

@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 
 import com.example.youssef.myapplication.MainActivity;
 import com.example.youssef.myapplication.data.DbContract;
-import com.example.youssef.myapplication.event.event.model.MyObject;
 import com.example.youssef.myapplication.R;
 import android.widget.AdapterView;
 import android.widget.SearchView;
@@ -183,7 +182,7 @@ public class ListEvent extends Fragment implements LoaderManager.LoaderCallbacks
         String queryUri = DbContract.MenuEntry.CONTENT_URI.toString();
 
         if (advancedSeach != null){
-            Log.d("args" ,advancedSeach.first);
+           // Log.d("args" ,advancedSeach.first);
 
             return new CursorLoader(getContext(), Uri.parse(queryUri), PROJECTION, advancedSeach.first,advancedSeach.second, null);
         }

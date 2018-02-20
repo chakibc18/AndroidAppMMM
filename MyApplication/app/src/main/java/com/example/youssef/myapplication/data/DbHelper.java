@@ -192,7 +192,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
                 db.insert(DbContract.MenuEntry.TABLE_NAME, null, menuValues);
 
-                Log.e(TAG, "Inserted Successfully " + menuValues );
+               // Log.e(TAG, "Inserted Successfully " + menuValues );
             }
 
 
@@ -210,7 +210,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         try {
             String jsonDataString = null;
-            inputStream = mResources.openRawResource(R.raw.menu_item);
+            inputStream = mResources.openRawResource(R.raw.fete_de_la_science);
             BufferedReader bufferedReader = new BufferedReader(
                     new InputStreamReader(inputStream, "UTF-8"));
             while ((jsonDataString = bufferedReader.readLine()) != null) {
@@ -277,7 +277,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         menuValues.put(DbContract.MenuEntry.COLUMN_MOTS_CLES_FR, model.getMots_cles_fr()  );
 
-        String geoLocalisation = model.getGeolocalisation()[0] + "," + model.getGeolocalisation()[1];
+        String geoLocalisation = model.getGeolocalisation();
         menuValues.put(DbContract.MenuEntry.COLUMN_GEOLOCALISATION, geoLocalisation);
 
         menuValues.put(DbContract.MenuEntry.COLUMN_PAYS, model.getPays()  );

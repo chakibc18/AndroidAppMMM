@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.youssef.myapplication.event.information.InfoEvent;
 import com.example.youssef.myapplication.event.list.ListEvent;
 import com.example.youssef.myapplication.event.search.AdvancedSearch;
+import com.example.youssef.myapplication.share.ShareClass;
 import com.example.youssef.myapplication.util.MenuUtil;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         InfoEvent detailFragment;
         AdvancedSearch searchFragment;
         MenuUtil menuUtil;
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -38,13 +40,15 @@ public class MainActivity extends AppCompatActivity {
             FirebaseApp.initializeApp(this);
 
             recyclerFragment = new ListEvent();
+            detailFragment = new InfoEvent();
+            detailFragment.setShareView(new ShareClass(this));
+
             menuUtil = new MenuUtil(this, recyclerFragment);
             addFragment(recyclerFragment, R.id.flContainer);
 
             recyclerFragment.setActivity(this);
 
             if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-                detailFragment = new InfoEvent();
                 detailFragment.setAttribute(getContentResolver(), recyclerFragment.position);
                 addFragment(detailFragment, R.id.flContainer2);                                                           // commit FragmentTransaction
             }
@@ -82,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         public void getInformation(View v){
-            detailFragment = new InfoEvent();
             detailFragment.setAttribute(getContentResolver(), recyclerFragment.position);
             if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
                 replaceFragment(detailFragment, R.id.flContainer2);

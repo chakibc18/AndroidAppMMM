@@ -16,7 +16,7 @@
 
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <com.example.youssef.myapplication.rating.BaseRatingBar
@@ -34,7 +34,6 @@
                 android:id="@+id/button_main_add_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="false"
                 android:layout_marginStart="23dp"
                 android:layout_below="@id/baseratingbar_main"
                 android:onClick="dialog"
@@ -46,8 +45,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
+                android:layout_alignRight="@id/baseratingbar_main"
                 android:layout_marginEnd="18dp"
                 android:text="Notifier" />
+
         </RelativeLayout>
 
 
@@ -55,18 +56,31 @@
             android:id="@+id/progressBar1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            android:layout_centerVertical="true"/>
+            android:layout_gravity="center_vertical|center_horizontal"/>
 
 
-    <WebView
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/parcours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center|right"
+            android:clickable="true"
+            android:focusable="true"
+            app:backgroundTint="@color/tw__composer_blue_text"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
+        <WebView
         android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
 
-    </WebView>
+        </WebView>
+
     </LinearLayout>
+
 
 </ScrollView>

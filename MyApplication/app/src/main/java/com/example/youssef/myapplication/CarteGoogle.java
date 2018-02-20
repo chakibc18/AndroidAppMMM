@@ -27,6 +27,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.youssef.myapplication.data.DbContract;
+import com.example.youssef.myapplication.map.MyEvent;
 import com.example.youssef.myapplication.map.OnMapAndViewReadyListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -35,6 +36,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.clustering.ClusterManager;
 
 /**
  * The main activity of the API library demo gallery.
@@ -44,6 +46,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public final class CarteGoogle extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     SupportMapFragment mapFragment;
+    private ClusterManager<MyEvent> mClusterManager;
+
+
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,13 @@ public final class CarteGoogle extends FragmentActivity implements OnMapReadyCal
     public void onMapReady(GoogleMap map) {
         Context context = getApplicationContext();
         mMap = map;
+        mClusterManager = new ClusterManager<>(this, mMap);
+        mMap.setOnCameraIdleListener(mClusterManager);
+        mMap.setOnMarkerClickListener(mClusterManager);
+        mMap.setOnInfoWindowClickListener(mClusterManager);
+        this.fillMap();
+        mClusterManager.cluster();
+
         // Hide the zoom controls as the button panel will cover it.
         mMap.getUiSettings().setZoomControlsEnabled(false);
         // Add lots of markers to the map.
@@ -71,50 +83,46 @@ public final class CarteGoogle extends FragmentActivity implements OnMapReadyCal
             @Override
             public void onInfoWindowClick(Marker marker) {
                 Intent intent=new Intent();
-                intent.putExtra("MESSAGE",marker.getTitle());
+                intent.putExtra("MESSAGE",marker.getSnippet());
                 setResult(2,intent);
                 finish();
             }
         });
 
         mMap.setContentDescription("Map with markers.");
-
-        this.fillMap();
     }
 
 
 
 
     public void setMarkers(GoogleMap map,String nom,int id ,LatLng latLng){
-        map.addMarker(new MarkerOptions().title(String.valueOf(id))
-                .snippet(nom)
-                .position(latLng));
+        mClusterManager.addItem(new MyEvent(id, nom, latLng));
     }
 
 
     public void fillMap(){
         ContentResolver resolver = getContentResolver();
         Cursor cursor = resolver.query(
-                DbContract.MenuEntry.CONTENT_URI,  // The content URI of the words table
+                DbContract.MenuEntry.CONTENT_URI,
                 new String[]{
                         DbContract.MenuEntry.COLUMN_GEOLOCALISATION,
-                        DbContract.MenuEntry.COLUMN_NOM_DU_LIEU,
+                        DbContract.MenuEntry.COLUMN_TITRE_FR,
                         DbContract.MenuEntry._ID
-                },                        // The columns to return for each row
-               null,
-                null,
+                },
+                DbContract.MenuEntry.COLUMN_GEOLOCALISATION + " NOT LIKE ?",
+                new String[]{""},
                 null);
 
         LatLng init = new LatLng(48.864716, 2.349014);
 
 
-        for (int i = 0; i<cursor.getCount();i++) {
+        for ( int i = 0; i<cursor.getCount();i++) {
             cursor.moveToPosition(i);
             String geo;
             geo = cursor.getString(0);
             String nom_lieu = cursor.getString(1);
             int id = cursor.getInt(2);
-            Log.d(this.getClass().getName(), geo);
+
             LatLng latLng = StringToLatLng(geo);
             setMarkers(this.mMap,nom_lieu, id,latLng);
         }
