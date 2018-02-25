@@ -36,14 +36,14 @@ android:orientation="vertical">
             android:text="Ajouter"
             android:layout_gravity="center_vertical|center_horizontal"
             />
+
         <Button
             android:id="@+id/reinitialize_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="reinitialiser"
             android:layout_gravity="center_vertical|center_horizontal"
-            />
+            android:padding="10dp"
+            android:text="ras" />
 
 
     </LinearLayout>

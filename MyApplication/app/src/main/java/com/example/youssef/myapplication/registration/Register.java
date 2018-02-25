@@ -81,7 +81,7 @@ public class Register {
 
     private void hundle_phones(){
         Button phone1 = (Button) register_dialog.findViewById(R.id.phone1);
-        phone1.setEnabled(parsing.getPhones().get(0)!= null);
+        phone1.setEnabled(parsing.getPhones().size()>0 && parsing.getPhones().get(0)!= null);
             phone1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -94,7 +94,7 @@ public class Register {
 
 
         Button phone2 = (Button) register_dialog.findViewById(R.id.phone2);
-        phone2.setEnabled(parsing.getPhones().get(1)!= null);
+        phone2.setEnabled(parsing.getPhones().size()>1 && parsing.getPhones().get(1)!= null);
         phone2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
