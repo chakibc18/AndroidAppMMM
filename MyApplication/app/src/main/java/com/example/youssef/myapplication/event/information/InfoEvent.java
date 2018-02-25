@@ -145,8 +145,8 @@ public class InfoEvent extends Fragment {
     }
 
     public void dialog(){
-        Toast.makeText(getActivity(), "Vous avez deja voté..!!", Toast.LENGTH_SHORT).show();
-        if(!isRated)  vote_dialog.show();
+        if(!isRated) { vote_dialog.show();}
+        else Toast.makeText(getActivity(), "Vous avez deja voté..!!", Toast.LENGTH_SHORT).show();
     }
 
     public void cancel(){
