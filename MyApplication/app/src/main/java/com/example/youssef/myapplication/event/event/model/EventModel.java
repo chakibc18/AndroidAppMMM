@@ -147,9 +147,12 @@ public class EventModel
         this.mots_cles_fr = setAttribute(obj, "mots_cles_fr");
 
 
-        JSONArray tmpGeoLocal = obj.getJSONArray("geolocalisation");
-        this.geolocalisation = tmpGeoLocal.getString(0)+','+tmpGeoLocal.getString(1);
-
+        try{
+            JSONArray tmpGeoLocal = obj.getJSONArray("geolocalisation");
+            this.geolocalisation = tmpGeoLocal.getString(0)+','+tmpGeoLocal.getString(1);
+        }catch (JSONException e){
+            this.geolocalisation = "";
+        }
         this.pays = setAttribute(obj, "pays");
         this.derniere_ouverture = setAttribute(obj, "derniere_ouverture");
         this.date_fin_jour = setAttribute(obj, "date_fin_jour");

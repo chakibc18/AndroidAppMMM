@@ -73,19 +73,21 @@ public final class CarteGoogle extends FragmentActivity implements OnMapReadyCal
         mMap.getUiSettings().setZoomControlsEnabled(false);
         // Add lots of markers to the map.
         //addMarkersToMap();
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+
+        mClusterManager.setOnClusterItemInfoWindowClickListener(new ClusterManager.OnClusterItemInfoWindowClickListener<MyEvent>() {
             @Override
-            public boolean onMarkerClick(Marker marker) {
-                return false;
-            }
-        });
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-            @Override
-            public void onInfoWindowClick(Marker marker) {
+            public void onClusterItemInfoWindowClick(MyEvent myEvent) {
                 Intent intent=new Intent();
-                intent.putExtra("MESSAGE",marker.getSnippet());
+                intent.putExtra("MESSAGE", myEvent.getTag());
                 setResult(2,intent);
                 finish();
+            }
+        });
+
+        mClusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MyEvent>() {
+            @Override
+            public boolean onClusterItemClick(MyEvent myEvent) {
+                return false;
             }
         });
 

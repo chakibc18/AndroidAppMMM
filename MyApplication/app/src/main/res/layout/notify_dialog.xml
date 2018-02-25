@@ -13,6 +13,15 @@
         android:padding="10dp"
         android:layout_gravity="center_vertical|center_horizontal"/>
 
+    <EditText
+        android:id="@+id/push_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:ems="10"
+        android:hint="Pass : 0000 pour tests"
+        />
+
     <Button
         android:id="@+id/push_button"
         android:layout_width="wrap_content"

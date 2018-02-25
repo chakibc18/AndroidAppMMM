@@ -17,6 +17,9 @@ import com.example.youssef.myapplication.MainActivity;
 import com.example.youssef.myapplication.R;
 import com.example.youssef.myapplication.event.list.ListEvent;
 
+import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
+import static android.view.inputmethod.EditorInfo.IME_FLAG_NO_EXTRACT_UI;
+
 /**
  * Created by youssef on 31/12/17.
  */
@@ -57,6 +60,7 @@ public class MenuUtil implements SearchView.OnQueryTextListener {
         filterView.setIconifiedByDefault(false);
         filterView.setOnQueryTextListener(this);
         filterView.setSubmitButtonEnabled(true);
+        filterView.setImeOptions(IME_ACTION_DONE | IME_FLAG_NO_EXTRACT_UI);
         filterView.setQueryHint("Recherche dans titre ...");
     }
 

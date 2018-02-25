@@ -32,12 +32,13 @@
 
             <Button
                 android:id="@+id/button_main_add_rating"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="23dp"
-                android:layout_below="@id/baseratingbar_main"
-                android:onClick="dialog"
-                android:text="@string/all_add_rating_title" />
+                android:layout_alignLeft="@+id/baseratingbar_main"
+                android:layout_alignRight="@+id/baseratingbar_main"
+                android:layout_marginStart="5dp"
+                android:background="@android:color/transparent"
+                android:onClick="dialog" />
 
             <Button
                 android:id="@+id/notify_button"
@@ -46,8 +47,17 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignRight="@id/baseratingbar_main"
+                android:layout_alignTop="@id/baseratingbar_main"
                 android:layout_marginEnd="18dp"
                 android:text="Notifier" />
+
+            <Button
+                android:id="@+id/register_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/baseratingbar_main"
+                android:layout_margin="10dp"
+                android:text="Inscription" />
 
         </RelativeLayout>
 

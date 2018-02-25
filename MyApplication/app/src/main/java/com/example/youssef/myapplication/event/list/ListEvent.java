@@ -39,7 +39,6 @@ public class ListEvent extends Fragment implements LoaderManager.LoaderCallbacks
     public int position = 1;
     private MyAdapter adapter;
     public String filter = null;
-    public int currentItemClicked;
 
     private static final String[] PROJECTION = new String[]{
             DbContract.MenuEntry._ID,
@@ -165,7 +164,7 @@ public class ListEvent extends Fragment implements LoaderManager.LoaderCallbacks
 
         recyclerView = (RecyclerView) getView().findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+        this.mainActivity = (MainActivity) getActivity();
         RecyclerViewClickListner listener = (View view, int pos) -> {
             position = pos;
             mainActivity.getInformation(getView());
@@ -182,8 +181,6 @@ public class ListEvent extends Fragment implements LoaderManager.LoaderCallbacks
         String queryUri = DbContract.MenuEntry.CONTENT_URI.toString();
 
         if (advancedSeach != null){
-           // Log.d("args" ,advancedSeach.first);
-
             return new CursorLoader(getContext(), Uri.parse(queryUri), PROJECTION, advancedSeach.first,advancedSeach.second, null);
         }
         else if(filter != null){
@@ -205,11 +202,6 @@ public class ListEvent extends Fragment implements LoaderManager.LoaderCallbacks
     public void onLoaderReset(Loader<Cursor> loader) {
         adapter.setData(null);
     }
-
-    public void setActivity(MainActivity mainActivity) {
-        this.mainActivity = mainActivity;
-    }
-
 
     public MyViewHolder getTheViewHolder(){
         return adapter.getViewHolder();

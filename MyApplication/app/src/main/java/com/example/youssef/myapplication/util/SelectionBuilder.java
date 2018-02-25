@@ -129,11 +129,11 @@ public class SelectionBuilder {
     }
 
     /**
-     * Execute update using the current internal state as {@code WHERE} clause.
+     * Execute updateVoteState using the current internal state as {@code WHERE} clause.
      */
     public int update(SQLiteDatabase db, ContentValues values) {
         assertTable();
-        Log.v(TAG, "update() " + this);
+        Log.v(TAG, "updateVoteState() " + this);
         return db.update(mTable, values, getSelection(), getSelectionArgs());
     }
 

@@ -7,8 +7,12 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.youssef.myapplication.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 
@@ -29,18 +33,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Sender {
     Dialog push_dialog;
     Button push_button;
-    String text;
     TextView push_text;
+    TextView push_pass;
+    private final static String pass = "0000";
     private  final String key = "AAAA0VwG5e8:APA91bFRNSIowRIYsCEVSL-7JIYhbewb-h-lCRNj0tZpX4tIIP4GlsyxM-Ki2iVZl3PP2LluVwPC33WN94oVi2S1NERoMCeKIExd5MEmKcpvMPkkiEe5stfzv8Ad8IFIv42jIQeQrgQI";
 
     public Sender(Activity activity) {
         push_dialog = new Dialog(activity);
-        push_dialog.setCancelable(false);
+        push_dialog.setCancelable(true);
         push_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         push_dialog.setContentView(R.layout.notify_dialog);
         push_text = (TextView) push_dialog.findViewById(R.id.push_text);
+        push_pass = (TextView) push_dialog.findViewById(R.id.push_pass);
         push_button = (Button) push_dialog.findViewById(R.id.push_button);
-
     }
 
     public void show(String event_title){
@@ -48,7 +53,11 @@ public class Sender {
         push_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                push(event_title, String.valueOf(push_text.getText()));
+                Log.e(this.getClass().getSimpleName(), pass + "   and "+push_pass.getText().toString() );
+                if(push_pass.getText().toString().equals(pass)) {
+                    push(event_title, String.valueOf(push_text.getText()));
+                }
+                else Toast.makeText(push_dialog.getContext(),  "Incorrect password! please use 0000 for tests", Toast.LENGTH_LONG).show();
                 push_dialog.cancel();
             }
         });

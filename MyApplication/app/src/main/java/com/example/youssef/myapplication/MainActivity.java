@@ -1,16 +1,12 @@
 package com.example.youssef.myapplication;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.youssef.myapplication.event.information.InfoEvent;
 import com.example.youssef.myapplication.event.list.ListEvent;
@@ -18,13 +14,6 @@ import com.example.youssef.myapplication.event.search.AdvancedSearch;
 import com.example.youssef.myapplication.share.ShareClass;
 import com.example.youssef.myapplication.util.MenuUtil;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
         ListEvent recyclerFragment;
@@ -36,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
-
             FirebaseApp.initializeApp(this);
 
             recyclerFragment = new ListEvent();
@@ -46,17 +34,16 @@ public class MainActivity extends AppCompatActivity {
             menuUtil = new MenuUtil(this, recyclerFragment);
             addFragment(recyclerFragment, R.id.flContainer);
 
-            recyclerFragment.setActivity(this);
-
-            if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+ /*           if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
                 detailFragment.setAttribute(getContentResolver(), recyclerFragment.position);
                 addFragment(detailFragment, R.id.flContainer2);                                                           // commit FragmentTransaction
-            }
+            }*/
             searchFragment = new AdvancedSearch();
-            searchFragment.setActivity(this);
             searchFragment.setListEvent(recyclerFragment);
 
         }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -76,22 +63,23 @@ public class MainActivity extends AppCompatActivity {
             .commit();
         }
 
-        public void replaceFragment(Fragment fragment, int container){
+    public void replaceFragment(Fragment fragment, int container){
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(container, fragment) // replace flContainer
                     .addToBackStack(null)
                     .commit();
-        }
+    }
 
 
         public void getInformation(View v){
             detailFragment.setAttribute(getContentResolver(), recyclerFragment.position);
-            if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+/*            if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
                 replaceFragment(detailFragment, R.id.flContainer2);
             }else{
                 replaceFragment(detailFragment, R.id.flContainer);
-            }
+            }*/
+            replaceFragment(detailFragment, R.id.flContainer);
         }
 
     //fontion appeler par le button button_map

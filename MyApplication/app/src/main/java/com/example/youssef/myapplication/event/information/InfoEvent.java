@@ -6,10 +6,14 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -24,6 +28,7 @@ import com.example.youssef.myapplication.data.DbContract;
 import com.example.youssef.myapplication.firebase.Sender;
 import com.example.youssef.myapplication.rating.BaseRatingBar;
 import com.example.youssef.myapplication.rating.RatingUtil;
+import com.example.youssef.myapplication.registration.Register;
 import com.example.youssef.myapplication.share.Parcours;
 import com.example.youssef.myapplication.share.ShareClass;
 import com.example.youssef.myapplication.share.TwitterUtil;
@@ -37,6 +42,9 @@ public class InfoEvent extends Fragment {
 
     private String lien = "";
     private String title="";
+
+    private boolean register = false;
+    private String registerData = "";
     private boolean isRated;
     private ShareClass shareClass;
     RatingUtil rating ;
@@ -93,7 +101,10 @@ public class InfoEvent extends Fragment {
                 new String[]{
                         DbContract.MenuEntry.COLUMN_LIEN,
                         DbContract.MenuEntry.COLUMN_VOTE,
-                        DbContract.MenuEntry.COLUMN_TITRE_FR
+                        DbContract.MenuEntry.COLUMN_TITRE_FR,
+                        DbContract.MenuEntry.COLUMN_INSCRIPTION_NECESSAIRE,
+                        DbContract.MenuEntry.COLUMN_LIEN_D_INSCRIPTION
+
                 },                        // The columns to return for each row
                 DbContract.MenuEntry._ID + "=?", new String[]{position+""},
                 null);
@@ -101,6 +112,15 @@ public class InfoEvent extends Fragment {
         lien = cursor.getString(0);
         isRated = cursor.getString(1).equals("true");
         title = cursor.getString(2);
+
+        if (cursor.getString(3)==null) {
+            register = false;
+        }
+        else {
+            String lower =  cursor.getString(3).toLowerCase();
+            register = lower.equals("oui");
+        }
+        registerData = (cursor.getString(4)!=null)?cursor.getString(4):"";
         shareClass.setItem(position, title, lien);
     }
 
@@ -141,6 +161,15 @@ public class InfoEvent extends Fragment {
 
     void setView(){
 
+        Button register_button = (Button) getActivity().findViewById(R.id.register_button);
+        register_button.setEnabled(register || !registerData.isEmpty());
+        register_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Register(getActivity(), registerData);
+            }
+        });
+
         webView = (WebView) getView().findViewById(R.id.webview);
 
         spinner = (ProgressBar)getView().findViewById(R.id.progressBar1);
@@ -157,7 +186,7 @@ public class InfoEvent extends Fragment {
         return position;
     }
 
-    public void update() {
+    public void updateVoteState() {
         ContentValues con = new ContentValues();
         con.put(DbContract.MenuEntry.COLUMN_VOTE, "true");
         resolver.update(DbContract.MenuEntry.CONTENT_URI,
@@ -167,6 +196,10 @@ public class InfoEvent extends Fragment {
         );
         isRated = true;
     }
+
+
+
+
 
     private class CustomWebViewClient extends WebViewClient {
 

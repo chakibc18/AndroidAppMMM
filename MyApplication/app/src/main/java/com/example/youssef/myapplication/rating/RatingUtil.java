@@ -1,13 +1,8 @@
 package com.example.youssef.myapplication.rating;
 
-import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.util.Log;
-import android.view.View;
 
 import com.example.youssef.myapplication.R;
-import com.example.youssef.myapplication.data.DbContract;
 import com.example.youssef.myapplication.event.information.InfoEvent;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,6 +29,7 @@ public class RatingUtil {
 
     public RatingUtil(InfoEvent infoEvent) {
         this.infoEvent = infoEvent;
+        Log.e("", String.valueOf(infoEvent==null));
         database = FirebaseDatabase.getInstance();
         DatabaseReference vote = database.getReference("rate");
         DatabaseReference nb_vote = database.getReference("rate_nb");
@@ -105,12 +101,12 @@ public class RatingUtil {
 
         child_vote.setValue(newRate);
         child_nb_vote.setValue(new_nb);
-        this.infoEvent.update();
+        this.infoEvent.updateVoteState();
         setRating(newRate);
 
     }
 
-    //on view and and update db rating
+    //on view and and updateVoteState db rating
     private void setRating(float f){
         baseRatingBar.setRating(f);
     }

@@ -26,6 +26,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
+import static android.view.inputmethod.EditorInfo.IME_FLAG_NO_EXTRACT_UI;
+
 /**
  * Created by youssef on 30/12/17.
  */
@@ -52,23 +55,16 @@ public class AdvancedSearch extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        this.activity = (MainActivity) getActivity();
         advancedSearch();
-    }
-
-    public void setActivity(MainActivity mainActivity){
-        this.activity = mainActivity;
     }
 
     public void advancedSearch() {
         date = (TextView) activity.findViewById(R.id.date);
-
         final Dialog dialog = new Dialog(activity);
         dialog.setContentView(R.layout.date_picker);
         dialog.setTitle("Title...");
         datePicker = (DatePicker) dialog.findViewById(R.id.datePicker);
-
-        //Log.e("visible ?", String.valueOf(datePicker.getVisibility()));
-
         date.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -147,9 +143,9 @@ public class AdvancedSearch extends Fragment {
         if(isKey) {
             args.add("%"+searchArgs.getSearched()+"%");
             if (searchArgs.isKeyword()) {
-                select += "( " + DbContract.MenuEntry.COLUMN_MOTS_CLES_FR + " LIKE ? )";
+                select += "( LOWER(" + DbContract.MenuEntry.COLUMN_MOTS_CLES_FR + ") LIKE LOWER(? )";
             } else if (searchArgs.isThematic()) {
-                select += "( " +DbContract.MenuEntry.COLUMN_THEMATIQUES + " LIKE ? )";
+                select += "( LOWER(" +DbContract.MenuEntry.COLUMN_THEMATIQUES + ") LIKE LOWER(?) )";
             }
             if(isDate) select += " AND ";
         }

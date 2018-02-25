@@ -17,6 +17,7 @@ public class MyEvent implements ClusterItem {
         this.mPosition = latLng;
     }
 
+
     @Override
     public LatLng getPosition() {
         return mPosition;
@@ -29,6 +30,10 @@ public class MyEvent implements ClusterItem {
 
     @Override
     public String getSnippet() {
+        return null;
+    }
+
+    public String getTag() {
         return String.valueOf(id);
     }
 }
