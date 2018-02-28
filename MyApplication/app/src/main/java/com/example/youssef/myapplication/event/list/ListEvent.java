@@ -11,6 +11,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -142,6 +145,12 @@ public class ListEvent extends Fragment implements LoaderManager.LoaderCallbacks
     private MainActivity mainActivity;
     public Pair<String,String[]> advancedSeach;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -194,11 +203,25 @@ public class ListEvent extends Fragment implements LoaderManager.LoaderCallbacks
         adapter.setData(null);
     }
 
-    public MyViewHolder getTheViewHolder(){
-        return adapter.getViewHolder();
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.add(0, 0, 0, "reinitialiser").setShortcut('3', 'c');
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        switch (item.getItemId()) {
+            case 0:
+                    advancedSeach = null;
+                    filter = null;
+                    getLoaderManager().restartLoader(0,null,this);
+                    recyclerView.scrollToPosition(0);
+                    return  true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
 }
