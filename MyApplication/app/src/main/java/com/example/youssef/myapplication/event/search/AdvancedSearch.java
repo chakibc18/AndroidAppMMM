@@ -42,7 +42,7 @@ public class AdvancedSearch extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        super.onCreateView(inflater,container,savedInstanceState);
+        super.onCreateView(inflater, container, savedInstanceState);
         return inflater.inflate(R.layout.search, container, false);
     }
 
@@ -82,20 +82,20 @@ public class AdvancedSearch extends Fragment {
 
     }
 
-    public  void search(){
+    public void search() {
         Button button = (Button) activity.findViewById(R.id.button_search);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Log.d("Print args", getArgs().toString());
                 listEvent.advancedSeach = buildSelection(getArgs());
-                activity.replaceFragment(activity.getRecyclerFragment(),R.id.flContainer);
-                listEvent.getLoaderManager().restartLoader(0,null,listEvent);
+                activity.replaceFragment(activity.getRecyclerFragment(), R.id.flContainer);
+                listEvent.getLoaderManager().restartLoader(0, null, listEvent);
             }
         });
     }
 
-    public SearchArgs getArgs(){
+    public SearchArgs getArgs() {
         TextView searchedView = (TextView) activity.findViewById(R.id.searched);
         String searched = String.valueOf(searchedView.getText());
 
@@ -110,11 +110,11 @@ public class AdvancedSearch extends Fragment {
             TextView dateView = (TextView) activity.findViewById(R.id.date);
             date = stringToDate(dateView.getText());
         }
-        return new SearchArgs(searched,checkedRadio==R.id.mot_cle, checkedRadio==R.id.theme, date);
+        return new SearchArgs(searched, checkedRadio == R.id.mot_cle, checkedRadio == R.id.theme, date);
     }
 
 
-    public Date stringToDate(CharSequence charSequence){
+    public Date stringToDate(CharSequence charSequence) {
         Date date = new Date();
         String s = String.valueOf(charSequence);
         String[] tmp = s.split("/");
@@ -125,61 +125,66 @@ public class AdvancedSearch extends Fragment {
     }
 
 
-    public Pair<String, String[]> buildSelection(SearchArgs searchArgs){
-
+    public Pair<String, String[]> buildSelection(SearchArgs searchArgs) {
 
 
         String select = "(";
         boolean isDate = !searchArgs.getDate().equals("");
         boolean isKey = !searchArgs.getSearched().equals("");
         List<String> args = new ArrayList<>();
-        if(!isKey && !isDate) return new Pair<>("", null);
-        if(isKey) {
-            args.add("%"+searchArgs.getSearched()+"%");
+        if (!isKey && !isDate) return new Pair<>("", null);
+        if (isKey) {
+            args.add("%" + searchArgs.getSearched() + "%");
             if (searchArgs.isKeyword()) {
                 select += "( LOWER(" + DbContract.MenuEntry.COLUMN_MOTS_CLES_FR + ") LIKE LOWER(? )";
             } else if (searchArgs.isThematic()) {
-                select += "( LOWER(" +DbContract.MenuEntry.COLUMN_THEMATIQUES + ") LIKE LOWER(?) )";
+                select += "( LOWER(" + DbContract.MenuEntry.COLUMN_THEMATIQUES + ") LIKE LOWER(?) )";
             }
-            if(isDate) select += " AND ";
+            if (isDate) select += " AND ";
         }
 
-        if (isDate){
-            select += "( "+ DbContract.MenuEntry.COLUMN_DATES +" LIKE ? )" ;
-            args.add("%"+searchArgs.getDate()+"%");
+        if (isDate) {
+            select += "( " + DbContract.MenuEntry.COLUMN_DATES + " LIKE ? )";
+            args.add("%" + searchArgs.getDate() + "%");
         }
-        select+=")";
+        select += ")";
         arrayArgs = new String[args.size()];
-        for(int i =0; i<args.size();i++){
+        for (int i = 0; i < args.size(); i++) {
             arrayArgs[i] = args.get(i);
         }
-        return new Pair<>(select,arrayArgs);
+        return new Pair<>(select, arrayArgs);
     }
 
 
-    String formatDate(Date date){
-        if(date!=null) {
+    String formatDate(Date date) {
+        if (date != null) {
             int day = date.getDate();
             String jour = (day < 10) ? "0" + day : "" + day;
             int month = date.getMonth();
             String mois = (month < 10) ? "0" + month : "" + month;
             return date.getYear() + "-" + mois + "-" + jour;
-        }
-        else {
+        } else {
             return "";
         }
 
     }
 
 
-
-    public class SearchArgs{
+    public class SearchArgs {
 
         private String searched;
         private boolean keyword;
         private boolean thematic;
         private Date date;
-        private String dateC ;
+        private String dateC;
+
+        public SearchArgs(String searched, boolean keyword, boolean thematic, Date date) {
+            this.searched = searched;
+            this.keyword = keyword;
+            this.thematic = thematic;
+            this.date = date;
+            dateC = formatDate(date);
+        }
 
         @Override
         public String toString() {
@@ -189,14 +194,6 @@ public class AdvancedSearch extends Fragment {
                     ", thematic=" + thematic +
                     ", Date=" + dateC +
                     '}';
-        }
-
-        public SearchArgs(String searched, boolean keyword, boolean thematic, Date date) {
-            this.searched = searched;
-            this.keyword = keyword;
-            this.thematic = thematic;
-            this.date = date;
-            dateC = formatDate(date);
         }
 
         public String getSearched() {

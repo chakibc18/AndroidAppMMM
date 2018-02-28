@@ -14,8 +14,8 @@ import com.twitter.sdk.android.tweetcomposer.TweetComposer;
  */
 
 public class TwitterUtil {
-    private Context context;
     public Boolean initialized = false;
+    private Context context;
 
     public TwitterUtil(Context context) {
         this.context = context;
@@ -23,7 +23,7 @@ public class TwitterUtil {
     }
 
 
-    private void initialize(){
+    private void initialize() {
         if (!initialized) {
             TwitterConfig config = new TwitterConfig.Builder(this.context)
                     .logger(new DefaultLogger(Log.DEBUG))
@@ -35,10 +35,10 @@ public class TwitterUtil {
         }
     }
 
-    public void post(String s){
-            TweetComposer.Builder builder = new TweetComposer.Builder(this.context)
-                    .text(s);
-            //    .image(image);
-            builder.show();
+    public void post(String s) {
+        TweetComposer.Builder builder = new TweetComposer.Builder(this.context)
+                .text(s);
+        //    .image(image);
+        builder.show();
     }
 }

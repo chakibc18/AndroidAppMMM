@@ -51,14 +51,15 @@ public class Parsing {
         }
     }
 
-    public String getMail(){
+    public String getMail() {
         return mail;
     }
-    public String getLinks(){
+
+    public String getLinks() {
         return link;
     }
 
-    public List<String> getPhones(){
+    public List<String> getPhones() {
         return phones;
     }
 

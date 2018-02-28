@@ -28,12 +28,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class Sender {
+    private final static String pass = "0000";
+    private final String key = "AAAA0VwG5e8:APA91bFRNSIowRIYsCEVSL-7JIYhbewb-h-lCRNj0tZpX4tIIP4GlsyxM-Ki2iVZl3PP2LluVwPC33WN94oVi2S1NERoMCeKIExd5MEmKcpvMPkkiEe5stfzv8Ad8IFIv42jIQeQrgQI";
     Dialog push_dialog;
     Button push_button;
     TextView push_text;
     TextView push_pass;
-    private final static String pass = "0000";
-    private  final String key = "AAAA0VwG5e8:APA91bFRNSIowRIYsCEVSL-7JIYhbewb-h-lCRNj0tZpX4tIIP4GlsyxM-Ki2iVZl3PP2LluVwPC33WN94oVi2S1NERoMCeKIExd5MEmKcpvMPkkiEe5stfzv8Ad8IFIv42jIQeQrgQI";
 
     public Sender(Activity activity) {
         push_dialog = new Dialog(activity);
@@ -45,16 +45,16 @@ public class Sender {
         push_button = (Button) push_dialog.findViewById(R.id.push_button);
     }
 
-    public void show(String event_title){
+    public void show(String event_title) {
 
         push_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e(this.getClass().getSimpleName(), pass + "   and "+push_pass.getText().toString() );
-                if(push_pass.getText().toString().equals(pass)) {
+                Log.e(this.getClass().getSimpleName(), pass + "   and " + push_pass.getText().toString());
+                if (push_pass.getText().toString().equals(pass)) {
                     push(event_title, String.valueOf(push_text.getText()));
-                }
-                else Toast.makeText(push_dialog.getContext(),  "Incorrect password! please use 0000 for tests", Toast.LENGTH_LONG).show();
+                } else
+                    Toast.makeText(push_dialog.getContext(), "Incorrect password! please use 0000 for tests", Toast.LENGTH_LONG).show();
                 push_dialog.cancel();
             }
         });
@@ -62,7 +62,7 @@ public class Sender {
         push_dialog.show();
     }
 
-    public void push(String title, String body){
+    public void push(String title, String body) {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -74,7 +74,7 @@ public class Sender {
 
                 // Request customization: add request headers
                 Request.Builder requestBuilder = original.newBuilder()
-                        .header("Authorization", "key="+key); // <-- this is the important line
+                        .header("Authorization", "key=" + key); // <-- this is the important line
                 Request request = requestBuilder.build();
                 return chain.proceed(request);
             }
@@ -93,7 +93,7 @@ public class Sender {
         FirebaseAPI firebaseAPI = retrofit.create(FirebaseAPI.class);
 
         //for messaging server
-        NotifyData notifydata = new NotifyData(title,body);
+        NotifyData notifydata = new NotifyData(title, body);
 
         Call<Message> call2 = firebaseAPI.sendMessage(new Message("/topics/events", notifydata));
 

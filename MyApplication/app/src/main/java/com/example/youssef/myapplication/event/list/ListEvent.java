@@ -28,12 +28,6 @@ import com.example.youssef.myapplication.data.DbContract;
 public class ListEvent extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String TAG = "MainActivity";
-
-    RecyclerView recyclerView;
-    public int position = 1;
-    private MyAdapter adapter;
-    public String filter = null;
-
     private static final String[] PROJECTION = new String[]{
             DbContract.MenuEntry._ID,
 
@@ -142,8 +136,12 @@ public class ListEvent extends Fragment implements LoaderManager.LoaderCallbacks
             DbContract.MenuEntry.COLUMN_IDENTIFIANT
 
     };
+    public int position = 1;
+    public String filter = null;
+    public Pair<String, String[]> advancedSeach;
+    RecyclerView recyclerView;
+    private MyAdapter adapter;
     private MainActivity mainActivity;
-    public Pair<String,String[]> advancedSeach;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -180,14 +178,13 @@ public class ListEvent extends Fragment implements LoaderManager.LoaderCallbacks
 
         String queryUri = DbContract.MenuEntry.CONTENT_URI.toString();
 
-        if (advancedSeach != null){
-            return new CursorLoader(getContext(), Uri.parse(queryUri), PROJECTION, advancedSeach.first,advancedSeach.second, null);
-        }
-        else if(filter != null){
+        if (advancedSeach != null) {
+            return new CursorLoader(getContext(), Uri.parse(queryUri), PROJECTION, advancedSeach.first, advancedSeach.second, null);
+        } else if (filter != null) {
             String filter_selection = DbContract.MenuEntry.COLUMN_TITRE_FR + " LIKE ?";
-            return new CursorLoader(getContext(), Uri.parse(queryUri), PROJECTION, filter_selection, new String[]{"%"+filter+"%"}, null);
-        }
-        else return new CursorLoader(getContext(), Uri.parse(queryUri), PROJECTION, null, null, null);
+            return new CursorLoader(getContext(), Uri.parse(queryUri), PROJECTION, filter_selection, new String[]{"%" + filter + "%"}, null);
+        } else
+            return new CursorLoader(getContext(), Uri.parse(queryUri), PROJECTION, null, null, null);
 
     }
 
@@ -205,7 +202,7 @@ public class ListEvent extends Fragment implements LoaderManager.LoaderCallbacks
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.add(0, 0, 0, "reinitialiser").setShortcut('3', 'c');
+        menu.add(0, 0, 0, "Réinitialiser").setShortcut('3', 'c');
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -214,14 +211,12 @@ public class ListEvent extends Fragment implements LoaderManager.LoaderCallbacks
 
         switch (item.getItemId()) {
             case 0:
-                    advancedSeach = null;
-                    filter = null;
-                    getLoaderManager().restartLoader(0,null,this);
-                    recyclerView.scrollToPosition(0);
-                    return  true;
+                advancedSeach = null;
+                filter = null;
+                getLoaderManager().restartLoader(0, null, this);
+                recyclerView.scrollToPosition(0);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }

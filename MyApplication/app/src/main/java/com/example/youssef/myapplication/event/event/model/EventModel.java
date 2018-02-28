@@ -11,8 +11,7 @@ import org.json.JSONObject;
  */
 
 
-public class EventModel
-{
+public class EventModel {
     private String code_postal;
 
     private String date_debut_jour;
@@ -144,10 +143,10 @@ public class EventModel
         this.mots_cles_fr = setAttribute(obj, "mots_cles_fr");
 
 
-        try{
+        try {
             JSONArray tmpGeoLocal = obj.getJSONArray("geolocalisation");
-            this.geolocalisation = tmpGeoLocal.getString(0)+','+tmpGeoLocal.getString(1);
-        }catch (JSONException e){
+            this.geolocalisation = tmpGeoLocal.getString(0) + ',' + tmpGeoLocal.getString(1);
+        } catch (JSONException e) {
             this.geolocalisation = "";
         }
         this.pays = setAttribute(obj, "pays");
@@ -179,540 +178,435 @@ public class EventModel
         this.identifiant = setAttribute(obj, "identifiant");
     }
 
-    String setAttribute(JSONObject obj, String name){
+    String setAttribute(JSONObject obj, String name) {
         String res = "";
-        try{
+        try {
             res = obj.getString(name);
-        }catch(JSONException exception){
+        } catch (JSONException exception) {
             Log.d(this.getClass().getSimpleName(), exception.toString());
         }
         return res;
     }
 
-    public String getCode_postal ()
-    {
+    public String getCode_postal() {
         return code_postal;
     }
 
-    public void setCode_postal (String code_postal)
-    {
+    public void setCode_postal(String code_postal) {
         this.code_postal = code_postal;
     }
 
-    public String getDate_debut_jour ()
-    {
+    public String getDate_debut_jour() {
         return date_debut_jour;
     }
 
-    public void setDate_debut_jour (String date_debut_jour)
-    {
+    public void setDate_debut_jour(String date_debut_jour) {
         this.date_debut_jour = date_debut_jour;
     }
 
-    public String getAdresse ()
-    {
+    public String getAdresse() {
         return adresse;
     }
 
-    public void setAdresse (String adresse)
-    {
+    public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
 
-    public String getDerniere_fermeture ()
-    {
+    public String getDerniere_fermeture() {
         return derniere_fermeture;
     }
 
-    public void setDerniere_fermeture (String derniere_fermeture)
-    {
+    public void setDerniere_fermeture(String derniere_fermeture) {
         this.derniere_fermeture = derniere_fermeture;
     }
 
-    public String getAge_maximum ()
-    {
+    public String getAge_maximum() {
         return age_maximum;
     }
 
-    public void setAge_maximum (String age_maximum)
-    {
+    public void setAge_maximum(String age_maximum) {
         this.age_maximum = age_maximum;
     }
 
-    public String getPartenaire ()
-    {
+    public String getPartenaire() {
         return partenaire;
     }
 
-    public void setPartenaire (String partenaire)
-    {
+    public void setPartenaire(String partenaire) {
         this.partenaire = partenaire;
     }
 
-    public String getVille ()
-    {
+    public String getVille() {
         return ville;
     }
 
-    public void setVille (String ville)
-    {
+    public void setVille(String ville) {
         this.ville = ville;
     }
 
-    public String getImage_source ()
-    {
+    public String getImage_source() {
         return image_source;
     }
 
-    public void setImage_source (String image_source)
-    {
+    public void setImage_source(String image_source) {
         this.image_source = image_source;
     }
 
-    public String getDepartement ()
-    {
+    public String getDepartement() {
         return departement;
     }
 
-    public void setDepartement (String departement)
-    {
+    public void setDepartement(String departement) {
         this.departement = departement;
     }
 
-    public String getDescription_fr ()
-    {
+    public String getDescription_fr() {
         return description_fr;
     }
 
-    public void setDescription_fr (String description_fr)
-    {
+    public void setDescription_fr(String description_fr) {
         this.description_fr = description_fr;
     }
 
-    public String getTranche ()
-    {
+    public String getTranche() {
         return tranche;
     }
 
-    public void setTranche (String tranche)
-    {
+    public void setTranche(String tranche) {
         this.tranche = tranche;
     }
 
-    public String getDate_debut ()
-    {
+    public String getDate_debut() {
         return date_debut;
     }
 
-    public void setDate_debut (String date_debut)
-    {
+    public void setDate_debut(String date_debut) {
         this.date_debut = date_debut;
     }
 
-    public String getEn_une ()
-    {
+    public String getEn_une() {
         return en_une;
     }
 
-    public void setEn_une (String en_une)
-    {
+    public void setEn_une(String en_une) {
         this.en_une = en_une;
     }
 
-    public String getArrondissement ()
-    {
+    public String getArrondissement() {
         return arrondissement;
     }
 
-    public void setArrondissement (String arrondissement)
-    {
+    public void setArrondissement(String arrondissement) {
         this.arrondissement = arrondissement;
     }
 
-    public String getAges ()
-    {
+    public String getAges() {
         return ages;
     }
 
-    public void setAges (String ages)
-    {
+    public void setAges(String ages) {
         this.ages = ages;
     }
 
-    public String getHoraires_detailles_fr ()
-    {
+    public String getHoraires_detailles_fr() {
         return horaires_detailles_fr;
     }
 
-    public void setHoraires_detailles_fr (String horaires_detailles_fr)
-    {
+    public void setHoraires_detailles_fr(String horaires_detailles_fr) {
         this.horaires_detailles_fr = horaires_detailles_fr;
     }
 
-    public String getDate_fin_mois ()
-    {
+    public String getDate_fin_mois() {
         return date_fin_mois;
     }
 
-    public void setDate_fin_mois (String date_fin_mois)
-    {
+    public void setDate_fin_mois(String date_fin_mois) {
         this.date_fin_mois = date_fin_mois;
     }
 
-    public String getStatut ()
-    {
+    public String getStatut() {
         return statut;
     }
 
-    public void setStatut (String statut)
-    {
+    public void setStatut(String statut) {
         this.statut = statut;
     }
 
-    public String getResume_dates_fr ()
-    {
+    public String getResume_dates_fr() {
         return resume_dates_fr;
     }
 
-    public void setResume_dates_fr (String resume_dates_fr)
-    {
+    public void setResume_dates_fr(String resume_dates_fr) {
         this.resume_dates_fr = resume_dates_fr;
     }
 
-    public String getImage ()
-    {
+    public String getImage() {
         return image;
     }
 
-    public void setImage (String image)
-    {
+    public void setImage(String image) {
         this.image = image;
     }
 
-    public String getHoraires_iso ()
-    {
+    public String getHoraires_iso() {
         return horaires_iso;
     }
 
-    public void setHoraires_iso (String horaires_iso)
-    {
+    public void setHoraires_iso(String horaires_iso) {
         this.horaires_iso = horaires_iso;
     }
 
-    public String getDate_debut_mois ()
-    {
+    public String getDate_debut_mois() {
         return date_debut_mois;
     }
 
-    public void setDate_debut_mois (String date_debut_mois)
-    {
+    public void setDate_debut_mois(String date_debut_mois) {
         this.date_debut_mois = date_debut_mois;
     }
 
-    public String getDescription_longue_html_fr ()
-    {
+    public String getDescription_longue_html_fr() {
         return description_longue_html_fr;
     }
 
-    public void setDescription_longue_html_fr (String description_longue_html_fr)
-    {
+    public void setDescription_longue_html_fr(String description_longue_html_fr) {
         this.description_longue_html_fr = description_longue_html_fr;
     }
 
-    public String getMots_cles_fr ()
-    {
+    public String getMots_cles_fr() {
         return mots_cles_fr;
     }
 
-    public void setMots_cles_fr (String mots_cles_fr)
-    {
+    public void setMots_cles_fr(String mots_cles_fr) {
         this.mots_cles_fr = mots_cles_fr;
     }
 
-    public String getGeolocalisation ()
-    {
+    public String getGeolocalisation() {
         return geolocalisation;
     }
 
-    public void setGeolocalisation (String geolocalisation)
-    {
+    public void setGeolocalisation(String geolocalisation) {
         this.geolocalisation = geolocalisation;
     }
 
-    public String getPays ()
-    {
+    public String getPays() {
         return pays;
     }
 
-    public void setPays (String pays)
-    {
+    public void setPays(String pays) {
         this.pays = pays;
     }
 
-    public String getDerniere_ouverture ()
-    {
+    public String getDerniere_ouverture() {
         return derniere_ouverture;
     }
 
-    public void setDerniere_ouverture (String derniere_ouverture)
-    {
+    public void setDerniere_ouverture(String derniere_ouverture) {
         this.derniere_ouverture = derniere_ouverture;
     }
 
-    public String getDate_fin_jour ()
-    {
+    public String getDate_fin_jour() {
         return date_fin_jour;
     }
 
-    public void setDate_fin_jour (String date_fin_jour)
-    {
+    public void setDate_fin_jour(String date_fin_jour) {
         this.date_fin_jour = date_fin_jour;
     }
 
-    public String getRegion ()
-    {
+    public String getRegion() {
         return region;
     }
 
-    public void setRegion (String region)
-    {
+    public void setRegion(String region) {
         this.region = region;
     }
 
-    public String getResume_horaires_fr ()
-    {
+    public String getResume_horaires_fr() {
         return resume_horaires_fr;
     }
 
-    public void setResume_horaires_fr (String resume_horaires_fr)
-    {
+    public void setResume_horaires_fr(String resume_horaires_fr) {
         this.resume_horaires_fr = resume_horaires_fr;
     }
 
-    public String getApercu ()
-    {
+    public String getApercu() {
         return apercu;
     }
 
-    public void setApercu (String apercu)
-    {
+    public void setApercu(String apercu) {
         this.apercu = apercu;
     }
 
-    public String getLien ()
-    {
+    public String getLien() {
         return lien;
     }
 
-    public void setLien (String lien)
-    {
+    public void setLien(String lien) {
         this.lien = lien;
     }
 
-    public String getAccessibilite_fr ()
-    {
+    public String getAccessibilite_fr() {
         return accessibilite_fr;
     }
 
-    public void setAccessibilite_fr (String accessibilite_fr)
-    {
+    public void setAccessibilite_fr(String accessibilite_fr) {
         this.accessibilite_fr = accessibilite_fr;
     }
 
-    public String getThematiques ()
-    {
+    public String getThematiques() {
         return thematiques;
     }
 
-    public void setThematiques (String thematiques)
-    {
+    public void setThematiques(String thematiques) {
         this.thematiques = thematiques;
     }
 
-    public String getTitre_fr ()
-    {
+    public String getTitre_fr() {
         return titre_fr;
     }
 
-    public void setTitre_fr (String titre_fr)
-    {
+    public void setTitre_fr(String titre_fr) {
         this.titre_fr = titre_fr;
     }
 
-    public String getInscription_necessaire ()
-    {
+    public String getInscription_necessaire() {
         return inscription_necessaire;
     }
 
-    public void setInscription_necessaire (String inscription_necessaire)
-    {
+    public void setInscription_necessaire(String inscription_necessaire) {
         this.inscription_necessaire = inscription_necessaire;
     }
 
-    public String getIdentifiant_du_lieu ()
-    {
+    public String getIdentifiant_du_lieu() {
         return identifiant_du_lieu;
     }
 
-    public void setIdentifiant_du_lieu (String identifiant_du_lieu)
-    {
+    public void setIdentifiant_du_lieu(String identifiant_du_lieu) {
         this.identifiant_du_lieu = identifiant_du_lieu;
     }
 
-    public String getDates ()
-    {
+    public String getDates() {
         return dates;
     }
 
-    public void setDates (String dates)
-    {
+    public void setDates(String dates) {
         this.dates = dates;
     }
 
-    public String getDetail_des_conditions_fr ()
-    {
+    public String getDetail_des_conditions_fr() {
         return detail_des_conditions_fr;
     }
 
-    public void setDetail_des_conditions_fr (String detail_des_conditions_fr)
-    {
+    public void setDetail_des_conditions_fr(String detail_des_conditions_fr) {
         this.detail_des_conditions_fr = detail_des_conditions_fr;
     }
 
-    public String getLien_d_inscription ()
-    {
+    public String getLien_d_inscription() {
         return lien_d_inscription;
     }
 
-    public void setLien_d_inscription (String lien_d_inscription)
-    {
+    public void setLien_d_inscription(String lien_d_inscription) {
         this.lien_d_inscription = lien_d_inscription;
     }
 
-    public String getDescription_longue_fr ()
-    {
+    public String getDescription_longue_fr() {
         return description_longue_fr;
     }
 
-    public void setDescription_longue_fr (String description_longue_fr)
-    {
+    public void setDescription_longue_fr(String description_longue_fr) {
         this.description_longue_fr = description_longue_fr;
     }
 
-    public String getAnimateurs ()
-    {
+    public String getAnimateurs() {
         return animateurs;
     }
 
-    public void setAnimateurs (String animateurs)
-    {
+    public void setAnimateurs(String animateurs) {
         this.animateurs = animateurs;
     }
 
-    public String getNom_du_lieu ()
-    {
+    public String getNom_du_lieu() {
         return nom_du_lieu;
     }
 
-    public void setNom_du_lieu (String nom_du_lieu)
-    {
+    public void setNom_du_lieu(String nom_du_lieu) {
         this.nom_du_lieu = nom_du_lieu;
     }
 
-    public String getPublics_concernes ()
-    {
+    public String getPublics_concernes() {
         return publics_concernes;
     }
 
-    public void setPublics_concernes (String publics_concernes)
-    {
+    public void setPublics_concernes(String publics_concernes) {
         this.publics_concernes = publics_concernes;
     }
 
-    public String getSelection ()
-    {
+    public String getSelection() {
         return selection;
     }
 
-    public void setSelection (String selection)
-    {
+    public void setSelection(String selection) {
         this.selection = selection;
     }
 
-    public String getDerniere_date ()
-    {
+    public String getDerniere_date() {
         return derniere_date;
     }
 
-    public void setDerniere_date (String derniere_date)
-    {
+    public void setDerniere_date(String derniere_date) {
         this.derniere_date = derniere_date;
     }
 
-    public String getDate_fin ()
-    {
+    public String getDate_fin() {
         return date_fin;
     }
 
-    public void setDate_fin (String date_fin)
-    {
+    public void setDate_fin(String date_fin) {
         this.date_fin = date_fin;
     }
 
-    public String getAge_minimum ()
-    {
+    public String getAge_minimum() {
         return age_minimum;
     }
 
-    public void setAge_minimum (String age_minimum)
-    {
+    public void setAge_minimum(String age_minimum) {
         this.age_minimum = age_minimum;
     }
 
-    public String getType_d_animation ()
-    {
+    public String getType_d_animation() {
         return type_d_animation;
     }
 
-    public void setType_d_animation (String type_d_animation)
-    {
+    public void setType_d_animation(String type_d_animation) {
         this.type_d_animation = type_d_animation;
     }
 
-    public String getOrganisateur ()
-    {
+    public String getOrganisateur() {
         return organisateur;
     }
 
-    public void setOrganisateur (String organisateur)
-    {
+    public void setOrganisateur(String organisateur) {
         this.organisateur = organisateur;
     }
 
-    public String getDerniere_mise_a_jour ()
-    {
+    public String getDerniere_mise_a_jour() {
         return derniere_mise_a_jour;
     }
 
-    public void setDerniere_mise_a_jour (String derniere_mise_a_jour)
-    {
+    public void setDerniere_mise_a_jour(String derniere_mise_a_jour) {
         this.derniere_mise_a_jour = derniere_mise_a_jour;
     }
 
-    public String getIdentifiant ()
-    {
+    public String getIdentifiant() {
         return identifiant;
     }
 
-    public void setIdentifiant (String identifiant)
-    {
+    public void setIdentifiant(String identifiant) {
         this.identifiant = identifiant;
     }
 
     @Override
-    public String toString()
-    {
-        return "ClassEventModel [code_postal = "+code_postal+", date_debut_jour = "+date_debut_jour+", adresse = "+adresse+", derniere_fermeture = "+derniere_fermeture+", age_maximum = "+age_maximum+", partenaire = "+partenaire+", ville = "+ville+", image_source = "+image_source+", departement = "+departement+", description_fr = "+description_fr+", tranche = "+tranche+", date_debut = "+date_debut+", en_une = "+en_une+", arrondissement = "+arrondissement+", ages = "+ages+", horaires_detailles_fr = "+horaires_detailles_fr+", date_fin_mois = "+date_fin_mois+", statut = "+statut+", resume_dates_fr = "+resume_dates_fr+", image = "+image+", horaires_iso = "+horaires_iso+", date_debut_mois = "+date_debut_mois+", description_longue_html_fr = "+description_longue_html_fr+", mots_cles_fr = "+mots_cles_fr+", geolocalisation = "+geolocalisation+", pays = "+pays+", derniere_ouverture = "+derniere_ouverture+", date_fin_jour = "+date_fin_jour+", region = "+region+", resume_horaires_fr = "+resume_horaires_fr+", apercu = "+apercu+", lien = "+lien+", accessibilite_fr = "+accessibilite_fr+", thematiques = "+thematiques+", titre_fr = "+titre_fr+", inscription_necessaire = "+inscription_necessaire+", identifiant_du_lieu = "+identifiant_du_lieu+", dates = "+dates+", detail_des_conditions_fr = "+detail_des_conditions_fr+", lien_d_inscription = "+lien_d_inscription+", description_longue_fr = "+description_longue_fr+", animateurs = "+animateurs+", nom_du_lieu = "+nom_du_lieu+", publics_concernes = "+publics_concernes+", selection = "+selection+", derniere_date = "+derniere_date+", date_fin = "+date_fin+", age_minimum = "+age_minimum+", type_d_animation = "+type_d_animation+", organisateur = "+organisateur+", derniere_mise_a_jour = "+derniere_mise_a_jour+", identifiant = "+identifiant+"]";
+    public String toString() {
+        return "ClassEventModel [code_postal = " + code_postal + ", date_debut_jour = " + date_debut_jour + ", adresse = " + adresse + ", derniere_fermeture = " + derniere_fermeture + ", age_maximum = " + age_maximum + ", partenaire = " + partenaire + ", ville = " + ville + ", image_source = " + image_source + ", departement = " + departement + ", description_fr = " + description_fr + ", tranche = " + tranche + ", date_debut = " + date_debut + ", en_une = " + en_une + ", arrondissement = " + arrondissement + ", ages = " + ages + ", horaires_detailles_fr = " + horaires_detailles_fr + ", date_fin_mois = " + date_fin_mois + ", statut = " + statut + ", resume_dates_fr = " + resume_dates_fr + ", image = " + image + ", horaires_iso = " + horaires_iso + ", date_debut_mois = " + date_debut_mois + ", description_longue_html_fr = " + description_longue_html_fr + ", mots_cles_fr = " + mots_cles_fr + ", geolocalisation = " + geolocalisation + ", pays = " + pays + ", derniere_ouverture = " + derniere_ouverture + ", date_fin_jour = " + date_fin_jour + ", region = " + region + ", resume_horaires_fr = " + resume_horaires_fr + ", apercu = " + apercu + ", lien = " + lien + ", accessibilite_fr = " + accessibilite_fr + ", thematiques = " + thematiques + ", titre_fr = " + titre_fr + ", inscription_necessaire = " + inscription_necessaire + ", identifiant_du_lieu = " + identifiant_du_lieu + ", dates = " + dates + ", detail_des_conditions_fr = " + detail_des_conditions_fr + ", lien_d_inscription = " + lien_d_inscription + ", description_longue_fr = " + description_longue_fr + ", animateurs = " + animateurs + ", nom_du_lieu = " + nom_du_lieu + ", publics_concernes = " + publics_concernes + ", selection = " + selection + ", derniere_date = " + derniere_date + ", date_fin = " + date_fin + ", age_minimum = " + age_minimum + ", type_d_animation = " + type_d_animation + ", organisateur = " + organisateur + ", derniere_mise_a_jour = " + derniere_mise_a_jour + ", identifiant = " + identifiant + "]";
     }
 }
 

@@ -26,7 +26,7 @@ public class ShareClass {
     private int max_events = 5;
 
 
-    public ShareClass(Activity activity){
+    public ShareClass(Activity activity) {
         this.activity = activity;
         twitterUtil = new TwitterUtil(activity);
         parcours = new Parcours(twitterUtil);
@@ -35,7 +35,7 @@ public class ShareClass {
         parcours_dialog.setContentView(R.layout.parcours_dialog);
     }
 
-    public void show_dialog(){
+    public void show_dialog() {
         parcours_dialog.show();
         //listeners
         Button twitter = (Button) parcours_dialog.findViewById(R.id.twitter_button);
@@ -52,12 +52,11 @@ public class ShareClass {
         twitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(added_events_count>0){
+                if (added_events_count > 0) {
                     tweet();
                     updateTextView(textView);
-                }
-                else {
-                    Toast.makeText(activity,"Votre parcours est vide!!",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(activity, "Votre parcours est vide!!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -65,13 +64,11 @@ public class ShareClass {
         adder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(added_events_count >= max_events) {
-                    Toast.makeText(activity,"Votre parcours est au max!!",Toast.LENGTH_SHORT).show();
-                }
-                else if (parcours.isIn(item)){
-                    Toast.makeText(activity,"Déjà ajouté!!",Toast.LENGTH_SHORT).show();
-                }
-                else {
+                if (added_events_count >= max_events) {
+                    Toast.makeText(activity, "Votre parcours est au max!!", Toast.LENGTH_SHORT).show();
+                } else if (parcours.isIn(item)) {
+                    Toast.makeText(activity, "Déjà ajouté!!", Toast.LENGTH_SHORT).show();
+                } else {
                     add_to_parcours(item);
                     updateTextView(textView);
                 }
@@ -79,30 +76,30 @@ public class ShareClass {
         });
     }
 
-    private void add_to_parcours(Parcours.Item item){
-            parcours.add(item);
-            added_events_count++;
+    private void add_to_parcours(Parcours.Item item) {
+        parcours.add(item);
+        added_events_count++;
     }
 
-    public void tweet(){
+    public void tweet() {
         parcours.publish();
         parcours_dialog.cancel();
         reinitialize();
     }
 
-    public void reinitialize(){
+    public void reinitialize() {
         added_events_count = 0;
         parcours = new Parcours(twitterUtil);
     }
 
 
-    public void setItem(int id, String title, String lien){
-        Parcours.Item item = parcours.new Item(id,title,lien);
+    public void setItem(int id, String title, String lien) {
+        Parcours.Item item = parcours.new Item(id, title, lien);
         this.item = item;
     }
 
 
-    private void updateTextView(TextView textView){
-        textView.setText("Vous parcours contient "+added_events_count+" evenement(s)");
+    private void updateTextView(TextView textView) {
+        textView.setText("Vous parcours contient " + added_events_count + " evenement(s)");
     }
 }

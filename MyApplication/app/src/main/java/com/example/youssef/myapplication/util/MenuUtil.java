@@ -24,13 +24,13 @@ public class MenuUtil implements SearchView.OnQueryTextListener {
     private ListEvent listEvent;
 
     public MenuUtil(MainActivity activity, ListEvent listEvent) {
-        this.listEvent =listEvent;
+        this.listEvent = listEvent;
         this.activity = activity;
         toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
         ((AppCompatActivity) activity).setSupportActionBar(toolbar);
     }
 
-    public void setFilterView(Menu menu){
+    public void setFilterView(Menu menu) {
         MenuItem mFilter = menu.findItem(R.id.action_search);
         filterView = (SearchView) mFilter.getActionView();
         setupFilterView();
@@ -39,8 +39,8 @@ public class MenuUtil implements SearchView.OnQueryTextListener {
     @Override
     public boolean onQueryTextSubmit(String query) {
         listEvent.filter = query;
-        activity.replaceFragment(activity.getRecyclerFragment(),R.id.flContainer);
-        listEvent.getLoaderManager().restartLoader(0,null,listEvent);
+        activity.replaceFragment(activity.getRecyclerFragment(), R.id.flContainer);
+        listEvent.getLoaderManager().restartLoader(0, null, listEvent);
         return true;
     }
 

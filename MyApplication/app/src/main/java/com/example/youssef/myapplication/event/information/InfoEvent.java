@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -32,22 +33,19 @@ import com.example.youssef.myapplication.share.ShareClass;
 
 public class InfoEvent extends Fragment {
 
+    RatingUtil rating;
+    Dialog vote_dialog;
+    Sender sender;
+    WebView webView;
+    ProgressBar spinner;
+    int position;
+    ContentResolver resolver;
     private String lien = "";
-    private String title="";
-
+    private String title = "";
     private boolean register = false;
     private String registerData = "";
     private boolean isRated;
     private ShareClass shareClass;
-    RatingUtil rating ;
-    Dialog vote_dialog;
-    Sender sender;
-
-    WebView webView;
-    ProgressBar spinner;
-
-    int position;
-    ContentResolver resolver;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,7 +68,7 @@ public class InfoEvent extends Fragment {
     }
 
 
-    public void parcours_listener(){
+    public void parcours_listener() {
         FloatingActionButton parcours = (FloatingActionButton) getActivity().findViewById(R.id.parcours);
         parcours.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,10 +80,11 @@ public class InfoEvent extends Fragment {
 
     /**
      * charge les informations de l'evenement ID = position depuis le la BDD SQLite
+     *
      * @param resolver
      * @param position
      */
-    public void setAttribute(ContentResolver resolver, int position){
+    public void setAttribute(ContentResolver resolver, int position) {
         this.resolver = resolver;
         this.position = position;
         Cursor cursor = resolver.query(
@@ -98,21 +97,20 @@ public class InfoEvent extends Fragment {
                         DbContract.MenuEntry.COLUMN_LIEN_D_INSCRIPTION
 
                 },                        // The columns to return for each row
-                DbContract.MenuEntry._ID + "=?", new String[]{position+""},
+                DbContract.MenuEntry._ID + "=?", new String[]{position + ""},
                 null);
         cursor.moveToPosition(0);
         lien = cursor.getString(0);
         isRated = cursor.getString(1).equals("true");
         title = cursor.getString(2);
 
-        if (cursor.getString(3)==null) {
+        if (cursor.getString(3) == null) {
             register = false;
-        }
-        else {
-            String lower =  cursor.getString(3).toLowerCase();
+        } else {
+            String lower = cursor.getString(3).toLowerCase();
             register = lower.equals("oui");
         }
-        registerData = (cursor.getString(4)!=null)?cursor.getString(4):"";
+        registerData = (cursor.getString(4) != null) ? cursor.getString(4) : "";
         shareClass.setItem(position, title, lien);
     }
 
@@ -129,29 +127,31 @@ public class InfoEvent extends Fragment {
         });
     }
 
-    private void getCustomDialogPrepaed(){
+    private void getCustomDialogPrepaed() {
         vote_dialog = new Dialog(getContext());
         vote_dialog.setCancelable(false);
         vote_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         vote_dialog.setContentView(R.layout.vote_dialog);
     }
 
-    public void dialog(){
-        if(!isRated) { vote_dialog.show();}
-        else Toast.makeText(getActivity(), "Vous avez deja voté..!!", Toast.LENGTH_SHORT).show();
+    public void dialog() {
+        if (!isRated) {
+            vote_dialog.show();
+        } else Toast.makeText(getActivity(), "Vous avez deja voté..!!", Toast.LENGTH_SHORT).show();
     }
 
-    public void cancel(){
+    public void cancel() {
         vote_dialog.cancel();
     }
-    public void confirm(){
+
+    public void confirm() {
         BaseRatingBar vote = (BaseRatingBar) vote_dialog.findViewById(R.id.voteBar);
         rating.updateRating(vote.getRating());
-        Toast.makeText(getContext(), vote.getRating()+"", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), vote.getRating() + "", Toast.LENGTH_SHORT).show();
         vote_dialog.cancel();
     }
 
-    void setView(){
+    void setView() {
 
         Button register_button = (Button) getActivity().findViewById(R.id.register_button);
         register_button.setEnabled(register || !registerData.isEmpty());
@@ -164,9 +164,15 @@ public class InfoEvent extends Fragment {
 
         webView = (WebView) getView().findViewById(R.id.webview);
 
-        spinner = (ProgressBar)getView().findViewById(R.id.progressBar1);
+        spinner = (ProgressBar) getView().findViewById(R.id.progressBar1);
         webView.setWebViewClient(new CustomWebViewClient());
         webView.getSettings().setJavaScriptEnabled(true);
+        webView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
 
         webView.getSettings().setDomStorageEnabled(true);
         webView.setOverScrollMode(WebView.OVER_SCROLL_NEVER);
@@ -183,14 +189,11 @@ public class InfoEvent extends Fragment {
         con.put(DbContract.MenuEntry.COLUMN_VOTE, "true");
         resolver.update(DbContract.MenuEntry.CONTENT_URI,
                 con,
-                DbContract.MenuEntry._ID + "= "+position,
+                DbContract.MenuEntry._ID + "= " + position,
                 null
         );
         isRated = true;
     }
-
-
-
 
 
     private class CustomWebViewClient extends WebViewClient {
@@ -209,5 +212,7 @@ public class InfoEvent extends Fragment {
             super.onPageFinished(view, url);
 
         }
+
+
     }
 }

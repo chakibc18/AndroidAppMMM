@@ -26,15 +26,10 @@ import java.util.List;
 
 public class BaseRatingBar extends LinearLayout implements SimpleRatingBar {
 
-    public interface OnRatingChangeListener {
-        void onRatingChange(BaseRatingBar ratingBar, float rating);
-    }
-
     public static final String TAG = "SimpleRatingBar";
-
     private static final int MAX_CLICK_DISTANCE = 5;
     private static final int MAX_CLICK_DURATION = 200;
-
+    protected List<PartialView> mPartialViews;
     private DecimalFormat mDecimalFormat;
 
     private int mNumStars;
@@ -57,8 +52,6 @@ public class BaseRatingBar extends LinearLayout implements SimpleRatingBar {
     private Drawable mFilledDrawable;
 
     private OnRatingChangeListener mOnRatingChangeListener;
-
-    protected List<PartialView> mPartialViews;
 
     public BaseRatingBar(Context context) {
         this(context, null);
@@ -176,6 +169,11 @@ public class BaseRatingBar extends LinearLayout implements SimpleRatingBar {
     }
 
     @Override
+    public int getNumStars() {
+        return mNumStars;
+    }
+
+    @Override
     public void setNumStars(int numStars) {
         if (numStars <= 0) {
             return;
@@ -189,8 +187,8 @@ public class BaseRatingBar extends LinearLayout implements SimpleRatingBar {
     }
 
     @Override
-    public int getNumStars() {
-        return mNumStars;
+    public float getRating() {
+        return mRating;
     }
 
     @Override
@@ -217,8 +215,8 @@ public class BaseRatingBar extends LinearLayout implements SimpleRatingBar {
     }
 
     @Override
-    public float getRating() {
-        return mRating;
+    public int getStarPadding() {
+        return mPadding;
     }
 
     @Override
@@ -232,11 +230,6 @@ public class BaseRatingBar extends LinearLayout implements SimpleRatingBar {
         for (PartialView partialView : mPartialViews) {
             partialView.setPadding(mPadding, mPadding, mPadding, mPadding);
         }
-    }
-
-    @Override
-    public int getStarPadding() {
-        return mPadding;
     }
 
     @Override
@@ -391,12 +384,12 @@ public class BaseRatingBar extends LinearLayout implements SimpleRatingBar {
         this.mIsClickable = clickable;
     }
 
-    public void setClearRatingEnabled(boolean enabled) {
-        this.mClearRatingEnabled = enabled;
-    }
-
     public boolean isClearRatingEnabled() {
         return mClearRatingEnabled;
+    }
+
+    public void setClearRatingEnabled(boolean enabled) {
+        this.mClearRatingEnabled = enabled;
     }
 
     public float getStepSize() {
@@ -431,5 +424,9 @@ public class BaseRatingBar extends LinearLayout implements SimpleRatingBar {
         super.onRestoreInstanceState(ss.getSuperState());
 
         setRating(ss.getRating());
+    }
+
+    public interface OnRatingChangeListener {
+        void onRatingChange(BaseRatingBar ratingBar, float rating);
     }
 }

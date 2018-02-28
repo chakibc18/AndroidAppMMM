@@ -38,14 +38,15 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClic
     }
 
     //puis ajouter une fonction pour remplir la cellule en fonction d'un MyObject
-    public void bind(String name, String image, String description, int id){
+    public void bind(String name, String image, String description, int id) {
         this.currentItemID = id;
         title.setText(name);
         itemView.setOnClickListener(this);
         desc.setText(description);
         //CircleTransform circleTransform = new CircleTransform();
-        RoundedCornersTransformation roundedCornersTransformation = new RoundedCornersTransformation(40,30);
-        if(image.isEmpty()) image = "android.resource://com.example.youssef.myapplication/"+R.drawable.defaultimage;
+        RoundedCornersTransformation roundedCornersTransformation = new RoundedCornersTransformation(40, 30);
+        if (image.isEmpty())
+            image = "android.resource://com.example.youssef.myapplication/" + R.drawable.defaultimage;
         Picasso.with(mContext)
                 .load(image)
                 .fit()
@@ -57,7 +58,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        mListener.onClick(v,  currentItemID);
+        mListener.onClick(v, currentItemID);
 
     }
 

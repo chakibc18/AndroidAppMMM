@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Parcours {
 
-    List<Item>  parcours;
+    List<Item> parcours;
     TwitterUtil twitterUtil;
 
     public Parcours(TwitterUtil twitterUtil) {
@@ -19,37 +19,37 @@ public class Parcours {
         this.twitterUtil = twitterUtil;
     }
 
-    public void add(Item i){
+    public void add(Item i) {
         parcours.add(i);
     }
 
 
-    public void remove(Item i){
+    public void remove(Item i) {
         parcours.remove(i);
     }
 
-    public  boolean isIn(Item i){
+    public boolean isIn(Item i) {
         return this.parcours.contains(i);
     }
 
-    public void publish(){
+    public void publish() {
         String s = "Mon parcours :\n";
         int i = 1;
-        for (Item e: parcours) {
+        for (Item e : parcours) {
             String title = applyTwitterLimit(e.title);
             String link = e.link;
-            s = s+i+++" :"+title+/*" "+ link +*/ '\n';
+            s = s + i++ + " :" + title +/*" "+ link +*/ '\n';
         }
         twitterUtil.post(s);
     }
 
 
-    public String applyTwitterLimit(String s){
-        if (s.length()<59) return s;
-        return s.substring(0,55)+"...";
+    public String applyTwitterLimit(String s) {
+        if (s.length() < 59) return s;
+        return s.substring(0, 55) + "...";
     }
 
-    public  class  Item {
+    public class Item {
         private int id;
         private String title;
         private String link;
@@ -71,8 +71,8 @@ public class Parcours {
         }
 
         @Override
-        public boolean equals(Object object){
-            if(object instanceof Item){
+        public boolean equals(Object object) {
+            if (object instanceof Item) {
                 return ((Item) object).id == this.id;
             }
             return false;

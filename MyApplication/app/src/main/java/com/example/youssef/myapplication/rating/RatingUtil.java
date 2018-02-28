@@ -16,30 +16,27 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RatingUtil {
 
+    int nombre_de_vote;
+    float current_evaluation = 0;
     private InfoEvent infoEvent;
     private BaseRatingBar baseRatingBar;
     private boolean done = false;
-
     private FirebaseDatabase database;
     private DatabaseReference child_vote;
     private DatabaseReference child_nb_vote;
 
-    int nombre_de_vote;
-    float current_evaluation = 0;
-
     public RatingUtil(InfoEvent infoEvent) {
         this.infoEvent = infoEvent;
-        Log.e("", String.valueOf(infoEvent==null));
+        Log.e("", String.valueOf(infoEvent == null));
         database = FirebaseDatabase.getInstance();
         DatabaseReference vote = database.getReference("rate");
         DatabaseReference nb_vote = database.getReference("rate_nb");
 
 
+        child_vote = vote.child(infoEvent.getPosition() + "");
+        child_nb_vote = nb_vote.child("" + infoEvent.getPosition());
 
-        child_vote = vote.child(infoEvent.getPosition()+"");
-        child_nb_vote = nb_vote.child(""+infoEvent.getPosition());
-
-        Log.e("if null child_vote", child_vote.getKey()+"");
+        Log.e("if null child_vote", child_vote.getKey() + "");
 
         baseRatingBar = (BaseRatingBar) this.infoEvent.getActivity().findViewById(R.id.baseratingbar_main);
         baseRatingBar.setClearRatingEnabled(false);
@@ -57,10 +54,9 @@ public class RatingUtil {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                if(dataSnapshot.getValue() == null) {
+                if (dataSnapshot.getValue() == null) {
                     child_vote.setValue(0);
-                }
-                else current_evaluation = dataSnapshot.getValue(Integer.class);
+                } else current_evaluation = dataSnapshot.getValue(Integer.class);
                 baseRatingBar.setRating(current_evaluation);
             }
 
@@ -76,10 +72,9 @@ public class RatingUtil {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                if(dataSnapshot.getValue() == null) {
+                if (dataSnapshot.getValue() == null) {
                     child_nb_vote.setValue(0);
-                }
-                else nombre_de_vote = dataSnapshot.getValue(Integer.class);
+                } else nombre_de_vote = dataSnapshot.getValue(Integer.class);
                 Log.d(this.getClass().getName(), "Value is: " + nombre_de_vote);
             }
 
@@ -92,12 +87,12 @@ public class RatingUtil {
 
     }
 
-    public void updateRating(float rate){
+    public void updateRating(float rate) {
         done = true;
         int nb = nombre_de_vote;
-        int new_nb = nb +1;
-        float newRate = (rate  +current_evaluation*nb)/new_nb;
-        Log.e("newRate",newRate+" "+ rate);
+        int new_nb = nb + 1;
+        float newRate = (rate + current_evaluation * nb) / new_nb;
+        Log.e("newRate", newRate + " " + rate);
 
         child_vote.setValue(newRate);
         child_nb_vote.setValue(new_nb);
@@ -107,7 +102,7 @@ public class RatingUtil {
     }
 
     //on view and and updateVoteState db rating
-    private void setRating(float f){
+    private void setRating(float f) {
         baseRatingBar.setRating(f);
     }
 

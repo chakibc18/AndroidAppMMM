@@ -18,27 +18,22 @@ import com.example.youssef.myapplication.util.SelectionBuilder;
  */
 
 public class MenuProvider extends ContentProvider {
-    DbHelper dbHelper;
-
-    private static final String AUTHORITY = DbContract.CONTENT_AUTHORITY;
     public static final String BASE_DATA_NAME = "menu";
-    public static final Uri SEARCH_SUGGEST_URI = Uri.parse("content://" + AUTHORITY + "/" + BASE_DATA_NAME + "/" + SearchManager.SUGGEST_URI_PATH_QUERY);
-
-
     public static final int ROUTE_ENTRIES = 1;
-
     public static final int ROUTE_ENTRIES_ID = 2;
-
+    private static final String AUTHORITY = DbContract.CONTENT_AUTHORITY;
+    public static final Uri SEARCH_SUGGEST_URI = Uri.parse("content://" + AUTHORITY + "/" + BASE_DATA_NAME + "/" + SearchManager.SUGGEST_URI_PATH_QUERY);
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+
     static {
         sUriMatcher.addURI(AUTHORITY, "entries", ROUTE_ENTRIES);
         sUriMatcher.addURI(AUTHORITY, "entries/*", ROUTE_ENTRIES_ID);
     }
 
+    DbHelper dbHelper;
 
     @Override
-    public boolean onCreate()
-    {
+    public boolean onCreate() {
         dbHelper = new DbHelper(getContext());
         return true;
     }
@@ -69,8 +64,6 @@ public class MenuProvider extends ContentProvider {
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
     }
-
-
 
 
     @Nullable

@@ -9,9 +9,9 @@
         android:id="@+id/push_text"
         android:layout_width="253dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
         android:hint="Contenu de la notification"
-        android:padding="10dp"
-        android:layout_gravity="center_vertical|center_horizontal"/>
+        android:padding="10dp" />
 
     <EditText
         android:id="@+id/push_pass"
@@ -19,16 +19,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:ems="10"
-        android:hint="Pass : 0000 pour tests"
-        />
+        android:hint="Pass : 0000 pour tests" />
 
     <Button
         android:id="@+id/push_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
         android:layout_weight="1"
         android:padding="10dp"
-        android:text="Notifier"
-        android:layout_gravity="center_vertical|center_horizontal"
-        />
+        android:text="Notifier" />
 </LinearLayout>

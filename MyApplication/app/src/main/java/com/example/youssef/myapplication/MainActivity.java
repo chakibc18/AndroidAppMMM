@@ -16,74 +16,72 @@ import com.example.youssef.myapplication.util.MenuUtil;
 import com.google.firebase.FirebaseApp;
 
 public class MainActivity extends AppCompatActivity {
-        ListEvent recyclerFragment;
-        InfoEvent detailFragment;
-        AdvancedSearch searchFragment;
-        MenuUtil menuUtil;
+    ListEvent recyclerFragment;
+    InfoEvent detailFragment;
+    AdvancedSearch searchFragment;
+    MenuUtil menuUtil;
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-            FirebaseApp.initializeApp(this);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        FirebaseApp.initializeApp(this);
 
-            recyclerFragment = new ListEvent();
-            detailFragment = new InfoEvent();
-            detailFragment.setShareView(new ShareClass(this));
+        recyclerFragment = new ListEvent();
+        detailFragment = new InfoEvent();
+        detailFragment.setShareView(new ShareClass(this));
 
-            menuUtil = new MenuUtil(this, recyclerFragment);
-            addFragment(recyclerFragment, R.id.flContainer);
+        menuUtil = new MenuUtil(this, recyclerFragment);
+        addFragment(recyclerFragment, R.id.flContainer);
 
  /*           if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
                 detailFragment.setAttribute(getContentResolver(), recyclerFragment.position);
                 addFragment(detailFragment, R.id.flContainer2);                                                           // commit FragmentTransaction
             }*/
-            searchFragment = new AdvancedSearch();
-            searchFragment.setListEvent(recyclerFragment);
+        searchFragment = new AdvancedSearch();
+        searchFragment.setListEvent(recyclerFragment);
 
-        }
+    }
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // check if the request code is same as what is passed  here it is 2
-        if(requestCode==2 && data !=null)
-        {
-            String message=data.getStringExtra("MESSAGE");
+        if (requestCode == 2 && data != null) {
+            String message = data.getStringExtra("MESSAGE");
             recyclerFragment.position = Integer.parseInt(message);
             getInformation(null);
         }
     }
 
-    public void addFragment(Fragment fragment, int container){
-            getSupportFragmentManager().beginTransaction()// begin  FragmentTransaction
-            .add(container, fragment)                               // add    Fragment
-            .commit();
-        }
+    public void addFragment(Fragment fragment, int container) {
+        getSupportFragmentManager().beginTransaction()// begin  FragmentTransaction
+                .add(container, fragment)                               // add    Fragment
+                .commit();
+    }
 
-    public void replaceFragment(Fragment fragment, int container){
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(container, fragment) // replace flContainer
-                    .addToBackStack(null)
-                    .commit();
+    public void replaceFragment(Fragment fragment, int container) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(container, fragment) // replace flContainer
+                .addToBackStack(null)
+                .commit();
     }
 
 
-        public void getInformation(View v){
-            detailFragment.setAttribute(getContentResolver(), recyclerFragment.position);
+    public void getInformation(View v) {
+        detailFragment.setAttribute(getContentResolver(), recyclerFragment.position);
 /*            if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
                 replaceFragment(detailFragment, R.id.flContainer2);
             }else{
                 replaceFragment(detailFragment, R.id.flContainer);
             }*/
-            replaceFragment(detailFragment, R.id.flContainer);
-        }
+        replaceFragment(detailFragment, R.id.flContainer);
+    }
 
     //fontion appeler par le button button_map
-    public void loadMap(View v){
+    public void loadMap(View v) {
         Intent myIntent = new Intent(this, CarteGoogle.class);
         startActivityForResult(myIntent, 2);
     }
@@ -125,13 +123,15 @@ public class MainActivity extends AppCompatActivity {
         return searchFragment;
     }
 
-    public void dialog(View view){
+    public void dialog(View view) {
         detailFragment.dialog();
     }
-    public void confirm(View view){
+
+    public void confirm(View view) {
         detailFragment.confirm();
     }
-    public void cancel(View view){
+
+    public void cancel(View view) {
         detailFragment.cancel();
     }
 }

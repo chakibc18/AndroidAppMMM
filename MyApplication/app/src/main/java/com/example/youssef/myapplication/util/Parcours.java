@@ -1,7 +1,6 @@
 package com.example.youssef.myapplication.util;
 
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,28 +10,28 @@ import java.util.List;
 
 public class Parcours {
 
-    List<Item>  parcours;
+    List<Item> parcours;
 
     public Parcours() {
         this.parcours = new ArrayList<Item>();
     }
 
-    public void add(Item i){
+    public void add(Item i) {
         parcours.add(i);
     }
 
-    public void remove(Item i){
+    public void remove(Item i) {
         parcours.remove(i);
     }
 
-    public void publish(){
-        for (Item e: parcours) {
+    public void publish() {
+        for (Item e : parcours) {
             String title = e.title;
             String image = e.image;
         }
     }
 
-    public  class  Item {
+    public class Item {
 
         String title;
         String image;

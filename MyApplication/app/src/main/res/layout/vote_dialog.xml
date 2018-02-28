@@ -18,11 +18,11 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_main_baseratingbar_title"
-        app:srb_starWidth="35dp"
+        app:srb_numStars="5"
+        app:srb_rating="0"
         app:srb_starHeight="35dp"
         app:srb_starPadding="5dp"
-        app:srb_numStars="5"
-        app:srb_rating="0"/>
+        app:srb_starWidth="35dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,15 +34,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="annuler"
-            android:onClick="cancel"/>
+            android:onClick="cancel"
+            android:text="annuler" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="voter"
-            android:onClick="confirm"/>
+            android:onClick="confirm"
+            android:text="voter" />
     </LinearLayout>
 
 </LinearLayout>

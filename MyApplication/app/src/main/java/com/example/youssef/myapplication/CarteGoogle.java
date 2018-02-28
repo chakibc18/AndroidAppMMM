@@ -38,11 +38,9 @@ import com.google.maps.android.clustering.ClusterManager;
  * The main layout lists the demonstrated features, with buttons to launch them.
  */
 public final class CarteGoogle extends FragmentActivity implements OnMapReadyCallback {
-    private GoogleMap mMap;
     SupportMapFragment mapFragment;
+    private GoogleMap mMap;
     private ClusterManager<MyEvent> mClusterManager;
-
-
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +69,9 @@ public final class CarteGoogle extends FragmentActivity implements OnMapReadyCal
         mClusterManager.setOnClusterItemInfoWindowClickListener(new ClusterManager.OnClusterItemInfoWindowClickListener<MyEvent>() {
             @Override
             public void onClusterItemInfoWindowClick(MyEvent myEvent) {
-                Intent intent=new Intent();
+                Intent intent = new Intent();
                 intent.putExtra("MESSAGE", myEvent.getTag());
-                setResult(2,intent);
+                setResult(2, intent);
                 finish();
             }
         });
@@ -89,14 +87,12 @@ public final class CarteGoogle extends FragmentActivity implements OnMapReadyCal
     }
 
 
-
-
-    public void setMarkers(GoogleMap map,String nom,int id ,LatLng latLng){
+    public void setMarkers(GoogleMap map, String nom, int id, LatLng latLng) {
         mClusterManager.addItem(new MyEvent(id, nom, latLng));
     }
 
 
-    public void fillMap(){
+    public void fillMap() {
         ContentResolver resolver = getContentResolver();
         Cursor cursor = resolver.query(
                 DbContract.MenuEntry.CONTENT_URI,
@@ -112,7 +108,7 @@ public final class CarteGoogle extends FragmentActivity implements OnMapReadyCal
         LatLng init = new LatLng(48.864716, 2.349014);
 
 
-        for ( int i = 0; i<cursor.getCount();i++) {
+        for (int i = 0; i < cursor.getCount(); i++) {
             cursor.moveToPosition(i);
             String geo;
             geo = cursor.getString(0);
@@ -120,7 +116,7 @@ public final class CarteGoogle extends FragmentActivity implements OnMapReadyCal
             int id = cursor.getInt(2);
 
             LatLng latLng = StringToLatLng(geo);
-            setMarkers(this.mMap,nom_lieu, id,latLng);
+            setMarkers(this.mMap, nom_lieu, id, latLng);
         }
         mMap.moveCamera(CameraUpdateFactory.
                 newLatLngZoom
@@ -129,9 +125,9 @@ public final class CarteGoogle extends FragmentActivity implements OnMapReadyCal
     }
 
 
-    LatLng StringToLatLng(String s){
+    LatLng StringToLatLng(String s) {
         String[] list = s.split(",");
-       return new LatLng(Double.parseDouble(list[0]), Double.parseDouble(list[1]));
+        return new LatLng(Double.parseDouble(list[0]), Double.parseDouble(list[1]));
     }
 
 

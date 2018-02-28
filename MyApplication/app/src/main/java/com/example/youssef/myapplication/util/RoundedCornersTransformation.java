@@ -3,13 +3,13 @@ package com.example.youssef.myapplication.util;
 
 /**
  * Copyright (C) 2017 Wasabeef
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,19 +28,10 @@ import com.squareup.picasso.Transformation;
 
 public class RoundedCornersTransformation implements Transformation {
 
-    public enum CornerType {
-        ALL,
-        TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT,
-        TOP, BOTTOM, LEFT, RIGHT,
-        OTHER_TOP_LEFT, OTHER_TOP_RIGHT, OTHER_BOTTOM_LEFT, OTHER_BOTTOM_RIGHT,
-        DIAGONAL_FROM_TOP_LEFT, DIAGONAL_FROM_TOP_RIGHT
-    }
-
     private int mRadius;
     private int mDiameter;
     private int mMargin;
     private CornerType mCornerType;
-
     public RoundedCornersTransformation(int radius, int margin) {
         this(radius, margin, CornerType.ALL);
     }
@@ -52,7 +43,8 @@ public class RoundedCornersTransformation implements Transformation {
         mCornerType = cornerType;
     }
 
-    @Override public Bitmap transform(Bitmap source) {
+    @Override
+    public Bitmap transform(Bitmap source) {
 
         int width = source.getWidth();
         int height = source.getHeight();
@@ -230,8 +222,17 @@ public class RoundedCornersTransformation implements Transformation {
         canvas.drawRect(new RectF(mMargin + mRadius, mMargin + mRadius, right, bottom), paint);
     }
 
-    @Override public String key() {
+    @Override
+    public String key() {
         return "RoundedTransformation(radius=" + mRadius + ", margin=" + mMargin + ", diameter="
                 + mDiameter + ", cornerType=" + mCornerType.name() + ")";
+    }
+
+    public enum CornerType {
+        ALL,
+        TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT,
+        TOP, BOTTOM, LEFT, RIGHT,
+        OTHER_TOP_LEFT, OTHER_TOP_RIGHT, OTHER_BOTTOM_LEFT, OTHER_BOTTOM_RIGHT,
+        DIAGONAL_FROM_TOP_LEFT, DIAGONAL_FROM_TOP_RIGHT
     }
 }

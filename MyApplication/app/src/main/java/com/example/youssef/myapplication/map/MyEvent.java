@@ -11,6 +11,7 @@ public class MyEvent implements ClusterItem {
     private final LatLng mPosition;
     private String title;
     private int id;
+
     public MyEvent(int id, String title, LatLng latLng) {
         this.title = title;
         this.id = id;

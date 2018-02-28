@@ -18,16 +18,10 @@ import com.example.youssef.myapplication.data.DbContract;
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     private static final String TAG = MyAdapter.class.getSimpleName();
-
+    private final LayoutInflater mInflater;
     private Cursor mCursor = null;
     private Context mContext;
-    private final LayoutInflater mInflater;
     private RecyclerViewClickListner mListener;
-
-    public MyViewHolder getViewHolder() {
-        return viewHolder;
-    }
-
     private MyViewHolder viewHolder;
 
     public MyAdapter(Context context, RecyclerViewClickListner listener) {
@@ -35,6 +29,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         this.mContext = context;
         this.mListener = listener;
     }
+
+    public MyViewHolder getViewHolder() {
+        return viewHolder;
+    }
+
     public void setData(Cursor cursor) {
         mCursor = cursor;
         notifyDataSetChanged();
@@ -44,7 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     //et par la même indiquer la vue à inflater (à partir des layout xml)
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int itemType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cell_cards,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cell_cards, viewGroup, false);
         viewHolder = new MyViewHolder(view, mContext, mListener);
         return viewHolder;
     }
@@ -56,7 +55,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
             if (mCursor.moveToPosition(position)) {
                 int curId = mCursor.getColumnIndex(DbContract.MenuEntry._ID);
                 int curTitle = mCursor.getColumnIndex(DbContract.MenuEntry.COLUMN_TITRE_FR);
-                int curDesc =  mCursor.getColumnIndex(DbContract.MenuEntry.COLUMN_DESCRIPTION_FR);
+                int curDesc = mCursor.getColumnIndex(DbContract.MenuEntry.COLUMN_DESCRIPTION_FR);
                 int curImage = mCursor.getColumnIndex(DbContract.MenuEntry.COLUMN_APERCU);
                 //Log.e("test getCulmnNames", Arrays.toString(mCursor.getColumnNames()));
 
@@ -67,12 +66,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
                 holder.bind(title, image, desc, id);
 
-                Log.e (TAG, "onBindViewHolder: is on point");
+                Log.e(TAG, "onBindViewHolder: is on point");
             } else {
-                Log.e (TAG, "onBindViewHolder: Cursor is null.");
+                Log.e(TAG, "onBindViewHolder: Cursor is null.");
             }
         } else {
-            Log.e (TAG, "onBindViewHolder: Cursor is null.");
+            Log.e(TAG, "onBindViewHolder: Cursor is null.");
         }
     }
 

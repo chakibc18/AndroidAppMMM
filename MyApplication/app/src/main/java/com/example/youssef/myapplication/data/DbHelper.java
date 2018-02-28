@@ -25,12 +25,11 @@ import java.io.InputStreamReader;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String TAG = DbHelper.class.getSimpleName();
-
-    private Resources mResources;
     private static final String DATABASE_NAME = "evenements.db";
     private static final int DATABASE_VERSION = 1;
     Context context;
     SQLiteDatabase db;
+    private Resources mResources;
 
 
     public DbHelper(Context context) {
@@ -40,6 +39,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         db = this.getWritableDatabase();
     }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -151,11 +151,12 @@ public class DbHelper extends SQLiteOpenHelper {
                 DbContract.MenuEntry.COLUMN_IDENTIFIANT + " TEXT NOT NULL, " +
                 DbContract.MenuEntry.COLUMN_VOTE + " TEXT NOT NULL " +
 
-                " );";;
+                " );";
+        ;
 
-        Log.d(TAG, "Database Created Successfully?" );
+        Log.d(TAG, "Database Created Successfully?");
         db.execSQL(SQL_CREATE_BUGS_TABLE);
-        Log.d(TAG, "Database Created Successfully" );
+        Log.d(TAG, "Database Created Successfully");
 
 
         try {
@@ -190,7 +191,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
                 db.insert(DbContract.MenuEntry.TABLE_NAME, null, menuValues);
 
-               // Log.e(TAG, "Inserted Successfully " + menuValues );
+                // Log.e(TAG, "Inserted Successfully " + menuValues );
             }
 
 
@@ -224,111 +225,111 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
 
-    private ContentValues format(EventModel model){
+    private ContentValues format(EventModel model) {
         ContentValues menuValues = new ContentValues();
 
         menuValues.put(DbContract.MenuEntry.COLUMN_CODE_POSTAL, model.getCode_postal());
 
         menuValues.put(DbContract.MenuEntry.COLUMN_DATE_DEBUT_JOUR, model.getDate_debut_jour());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_ADRESSE, model.getAdresse()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_ADRESSE, model.getAdresse());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_DERNIERE_FERMETURE, model.getDerniere_fermeture()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_DERNIERE_FERMETURE, model.getDerniere_fermeture());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_AGE_MAXIMUM, model.getAge_maximum()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_AGE_MAXIMUM, model.getAge_maximum());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_PARTENAIRE, model.getPartenaire()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_PARTENAIRE, model.getPartenaire());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_VILLE, model.getVille()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_VILLE, model.getVille());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_IMAGE_SOURCE, model.getImage_source()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_IMAGE_SOURCE, model.getImage_source());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_DEPARTEMENT, model.getDepartement()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_DEPARTEMENT, model.getDepartement());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_DESCRIPTION_FR, model.getDescription_fr()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_DESCRIPTION_FR, model.getDescription_fr());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_TRANCHE, model.getTranche()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_TRANCHE, model.getTranche());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_DATE_DEBUT, model.getDate_debut()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_DATE_DEBUT, model.getDate_debut());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_EN_UNE, model.getEn_une()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_EN_UNE, model.getEn_une());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_ARRONDISSEMENT, model.getArrondissement()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_ARRONDISSEMENT, model.getArrondissement());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_AGES, model.getAges()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_AGES, model.getAges());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_HORAIRES_DETAILLES_FR, model.getHoraires_detailles_fr()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_HORAIRES_DETAILLES_FR, model.getHoraires_detailles_fr());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_DATE_FIN_MOIS, model.getDate_fin_mois()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_DATE_FIN_MOIS, model.getDate_fin_mois());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_STATUT, model.getStatut()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_STATUT, model.getStatut());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_RESUME_DATES_FR, model.getResume_dates_fr()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_RESUME_DATES_FR, model.getResume_dates_fr());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_IMAGE, model.getImage()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_IMAGE, model.getImage());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_HORAIRES_ISO, model.getHoraires_iso()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_HORAIRES_ISO, model.getHoraires_iso());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_DATE_DEBUT_MOIS, model.getDate_debut_mois()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_DATE_DEBUT_MOIS, model.getDate_debut_mois());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_DESCRIPTION_LONGUE_HTML_FR, model.getDescription_longue_html_fr()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_DESCRIPTION_LONGUE_HTML_FR, model.getDescription_longue_html_fr());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_MOTS_CLES_FR, model.getMots_cles_fr()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_MOTS_CLES_FR, model.getMots_cles_fr());
 
         String geoLocalisation = model.getGeolocalisation();
         menuValues.put(DbContract.MenuEntry.COLUMN_GEOLOCALISATION, geoLocalisation);
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_PAYS, model.getPays()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_PAYS, model.getPays());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_DERNIERE_OUVERTURE, model.getDerniere_ouverture()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_DERNIERE_OUVERTURE, model.getDerniere_ouverture());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_DATE_FIN_JOUR, model.getDate_fin_jour()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_DATE_FIN_JOUR, model.getDate_fin_jour());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_REGION, model.getRegion()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_REGION, model.getRegion());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_RESUME_HORAIRES_FR, model.getResume_horaires_fr()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_RESUME_HORAIRES_FR, model.getResume_horaires_fr());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_APERCU, model.getApercu()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_APERCU, model.getApercu());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_LIEN, model.getLien()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_LIEN, model.getLien());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_ACCESSIBILITE_FR, model.getAccessibilite_fr()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_ACCESSIBILITE_FR, model.getAccessibilite_fr());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_THEMATIQUES, model.getThematiques()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_THEMATIQUES, model.getThematiques());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_TITRE_FR, model.getTitre_fr()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_TITRE_FR, model.getTitre_fr());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_INSCRIPTION_NECESSAIRE, model.getInscription_necessaire()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_INSCRIPTION_NECESSAIRE, model.getInscription_necessaire());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_IDENTIFIANT_DU_LIEU, model.getIdentifiant_du_lieu()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_IDENTIFIANT_DU_LIEU, model.getIdentifiant_du_lieu());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_DATES, model.getDates()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_DATES, model.getDates());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_DETAIL_DES_CONDITIONS_FR, model.getDetail_des_conditions_fr()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_DETAIL_DES_CONDITIONS_FR, model.getDetail_des_conditions_fr());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_LIEN_D_INSCRIPTION, model.getLien_d_inscription()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_LIEN_D_INSCRIPTION, model.getLien_d_inscription());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_DESCRIPTION_LONGUE_FR, model.getDescription_longue_fr()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_DESCRIPTION_LONGUE_FR, model.getDescription_longue_fr());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_ANIMATEURS, model.getAnimateurs()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_ANIMATEURS, model.getAnimateurs());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_NOM_DU_LIEU, model.getNom_du_lieu()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_NOM_DU_LIEU, model.getNom_du_lieu());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_PUBLICS_CONCERNES, model.getPublics_concernes()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_PUBLICS_CONCERNES, model.getPublics_concernes());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_SELECTION, model.getSelection()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_SELECTION, model.getSelection());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_DERNIERE_DATE, model.getDerniere_date()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_DERNIERE_DATE, model.getDerniere_date());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_DATE_FIN, model.getDate_fin()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_DATE_FIN, model.getDate_fin());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_AGE_MINIMUM, model.getAge_minimum()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_AGE_MINIMUM, model.getAge_minimum());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_TYPE_D_ANIMATION, model.getType_d_animation()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_TYPE_D_ANIMATION, model.getType_d_animation());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_ORGANISATEUR, model.getOrganisateur()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_ORGANISATEUR, model.getOrganisateur());
 
-        menuValues.put(DbContract.MenuEntry.COLUMN_DERNIERE_MISE_A_JOUR, model.getDerniere_mise_a_jour()  );
+        menuValues.put(DbContract.MenuEntry.COLUMN_DERNIERE_MISE_A_JOUR, model.getDerniere_mise_a_jour());
 
         menuValues.put(DbContract.MenuEntry.COLUMN_IDENTIFIANT, model.getIdentifiant());
         menuValues.put(DbContract.MenuEntry.COLUMN_VOTE, "false");
