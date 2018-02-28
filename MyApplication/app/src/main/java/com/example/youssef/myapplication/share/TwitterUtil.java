@@ -9,9 +9,6 @@ import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterConfig;
 import com.twitter.sdk.android.tweetcomposer.TweetComposer;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 /**
  * Created by youssef on 28/12/17.
  */

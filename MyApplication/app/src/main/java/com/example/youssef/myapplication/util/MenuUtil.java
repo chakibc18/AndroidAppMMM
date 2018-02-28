@@ -1,15 +1,8 @@
 package com.example.youssef.myapplication.util;
 
-import android.app.Activity;
-import android.database.Cursor;
-import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 

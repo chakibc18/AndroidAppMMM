@@ -1,6 +1,5 @@
 package com.example.youssef.myapplication.event.list;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,22 +9,14 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.youssef.myapplication.MainActivity;
-import com.example.youssef.myapplication.data.DbContract;
 import com.example.youssef.myapplication.R;
-import android.widget.AdapterView;
-import android.widget.SearchView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import com.example.youssef.myapplication.data.DbContract;
 
 /**
  * Created by youssef on 23/12/17.

@@ -6,14 +6,9 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -29,10 +24,7 @@ import com.example.youssef.myapplication.firebase.Sender;
 import com.example.youssef.myapplication.rating.BaseRatingBar;
 import com.example.youssef.myapplication.rating.RatingUtil;
 import com.example.youssef.myapplication.registration.Register;
-import com.example.youssef.myapplication.share.Parcours;
 import com.example.youssef.myapplication.share.ShareClass;
-import com.example.youssef.myapplication.share.TwitterUtil;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 /**
  * Created by youssef on 24/12/17.

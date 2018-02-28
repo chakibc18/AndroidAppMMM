@@ -1,16 +1,6 @@
 <resources>
     <string name="app_name">MMM</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="action_advance_search">Recherche avancée</string>
-    <string name="toolbar_title">Contacts</string>
-    <string name="action_search">Search</string>
-    <string name="search_hint">Type name…</string>
     <string name="title_activity_carte_google">CarteGoogle</string>
 
-    <string name="all_baseratingbar_title">BaseRatingBar</string>
-    <string name="all_scaleratingbar_title">ScaleRatingBar</string>
-    <string name="all_rotationratingbar_title">RotationRatingBar</string>
-    <string name="all_add_rating_title">Je vote</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_main2">Main2Activity</string>
 </resources>

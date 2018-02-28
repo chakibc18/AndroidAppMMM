@@ -2,16 +2,11 @@ package com.example.youssef.myapplication.event.list;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.youssef.myapplication.MainActivity;
 import com.example.youssef.myapplication.R;
-import com.example.youssef.myapplication.event.information.InfoEvent;
-import com.example.youssef.myapplication.util.CircleTransform;
 import com.example.youssef.myapplication.util.RoundedCornersTransformation;
 import com.squareup.picasso.Picasso;
 

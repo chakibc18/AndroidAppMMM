@@ -10,9 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.youssef.myapplication.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 

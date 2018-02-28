@@ -1,6 +1,5 @@
 package com.example.youssef.myapplication.event.list;
 
-import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
@@ -9,11 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.youssef.myapplication.data.DbContract;
 import com.example.youssef.myapplication.R;
-
-import java.util.Arrays;
-import java.util.List;
+import com.example.youssef.myapplication.data.DbContract;
 
 /**
  * Created by youssef on 23/12/17.

@@ -31,7 +31,6 @@
             </com.example.youssef.myapplication.rating.BaseRatingBar>
 
             <Button
-                android:id="@+id/button_main_add_rating"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/baseratingbar_main"

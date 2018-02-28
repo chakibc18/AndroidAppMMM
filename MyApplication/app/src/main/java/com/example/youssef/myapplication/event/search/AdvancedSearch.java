@@ -1,10 +1,8 @@
 package com.example.youssef.myapplication.event.search;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,13 +19,9 @@ import com.example.youssef.myapplication.data.DbContract;
 import com.example.youssef.myapplication.event.list.ListEvent;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
-import static android.view.inputmethod.EditorInfo.IME_FLAG_NO_EXTRACT_UI;
 
 /**
  * Created by youssef on 30/12/17.

@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.youssef.myapplication.R;
-import com.example.youssef.myapplication.share.Parcours;
-import com.example.youssef.myapplication.share.TwitterUtil;
 
 /**
  * Cette classe permet de s'inscrire à un event
@@ -35,7 +33,7 @@ public class Register {
             register_dialog.show();
         }
         else {
-            String msg = "Bien que l'evenement require une inscription, les données pour s'y inscrire ne figurent pas sur la base de données ):";
+            String msg = "Les données pour l'inscription ne figurent pas sur la base de données ):";
             Toast.makeText(activity, msg, Toast.LENGTH_LONG).show();
         }
     }
