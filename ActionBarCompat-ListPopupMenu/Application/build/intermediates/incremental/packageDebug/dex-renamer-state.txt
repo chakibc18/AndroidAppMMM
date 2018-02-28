@@ -1,7 +1,0 @@
-#Sat Dec 30 02:35:23 CET 2017
-base.0=/home/youssef/AndroidStudioProjects/ActionBarCompat-ListPopupMenu/Application/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_9f13363146b45365d8f2cd2c4c2639763bae1ad7
-renamed.1=classes2.dex
-renamed.0=classes.dex
-file.1=/home/youssef/AndroidStudioProjects/ActionBarCompat-ListPopupMenu/Application/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_543ee9f874b57575e0cd0695086958e782bb558e/classes.dex
-base.1=/home/youssef/AndroidStudioProjects/ActionBarCompat-ListPopupMenu/Application/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_543ee9f874b57575e0cd0695086958e782bb558e
-file.0=/home/youssef/AndroidStudioProjects/ActionBarCompat-ListPopupMenu/Application/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_9f13363146b45365d8f2cd2c4c2639763bae1ad7/classes.dex
