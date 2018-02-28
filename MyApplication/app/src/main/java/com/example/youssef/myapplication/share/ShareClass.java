@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.youssef.myapplication.R;
 
 /**
+ * Notre classe pour publier un parcours sur Twitter
  * Created by youssef on 18/02/18.
  */
 

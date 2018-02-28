@@ -11,13 +11,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 /**
+ * La classe de la fonctionnalité du vote
  * Created by youssef on 28/12/17.
  */
 
 public class RatingUtil {
 
-    int nombre_de_vote;
-    float current_evaluation = 0;
+    private int nombre_de_vote;
+    private float current_evaluation = 0;
     private InfoEvent infoEvent;
     private BaseRatingBar baseRatingBar;
     private boolean done = false;

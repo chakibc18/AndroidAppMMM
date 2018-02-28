@@ -11,6 +11,7 @@ import com.example.youssef.myapplication.util.RoundedCornersTransformation;
 import com.squareup.picasso.Picasso;
 
 /**
+ *La classe Holder du RecyclerView pour la CardView
  * Created by youssef on 23/12/17.
  */
 

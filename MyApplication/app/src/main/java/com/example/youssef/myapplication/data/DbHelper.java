@@ -27,7 +27,6 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String TAG = DbHelper.class.getSimpleName();
     private static final String DATABASE_NAME = "evenements.db";
     private static final int DATABASE_VERSION = 1;
-    Context context;
     SQLiteDatabase db;
     private Resources mResources;
 

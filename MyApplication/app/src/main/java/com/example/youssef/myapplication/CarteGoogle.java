@@ -33,12 +33,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.clustering.ClusterManager;
 
 /**
- * The main activity of the API library demo gallery.
- * <p>
- * The main layout lists the demonstrated features, with buttons to launch them.
+ * Notre carte interactive des events.
+ *
  */
 public final class CarteGoogle extends FragmentActivity implements OnMapReadyCallback {
-    SupportMapFragment mapFragment;
+    private SupportMapFragment mapFragment;
     private GoogleMap mMap;
     private ClusterManager<MyEvent> mClusterManager;
 
@@ -86,12 +85,20 @@ public final class CarteGoogle extends FragmentActivity implements OnMapReadyCal
         mMap.setContentDescription("Map with markers.");
     }
 
-
+    /**
+     * ajout d'un marker
+     * @param map
+     * @param nom
+     * @param id
+     * @param latLng
+     */
     public void setMarkers(GoogleMap map, String nom, int id, LatLng latLng) {
         mClusterManager.addItem(new MyEvent(id, nom, latLng));
     }
 
-
+    /**
+     * ajout des clusters contenant les events a la carte
+     */
     public void fillMap() {
         ContentResolver resolver = getContentResolver();
         Cursor cursor = resolver.query(

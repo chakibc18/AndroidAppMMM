@@ -4,6 +4,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.clustering.ClusterItem;
 
 /**
+ * Notre model pour un event sur la carte
  * Created by youssef on 20/02/18.
  */
 

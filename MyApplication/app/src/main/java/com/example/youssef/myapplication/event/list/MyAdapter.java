@@ -12,6 +12,7 @@ import com.example.youssef.myapplication.R;
 import com.example.youssef.myapplication.data.DbContract;
 
 /**
+ * notre classe adaptateur pour le RecyclerView
  * Created by youssef on 23/12/17.
  */
 

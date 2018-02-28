@@ -15,11 +15,14 @@ import com.example.youssef.myapplication.share.ShareClass;
 import com.example.youssef.myapplication.util.MenuUtil;
 import com.google.firebase.FirebaseApp;
 
+/**
+ * Notre classe principale
+ */
 public class MainActivity extends AppCompatActivity {
-    ListEvent recyclerFragment;
-    InfoEvent detailFragment;
-    AdvancedSearch searchFragment;
-    MenuUtil menuUtil;
+    private ListEvent recyclerFragment;
+    private InfoEvent detailFragment;
+    private AdvancedSearch searchFragment;
+    private MenuUtil menuUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +58,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Ajout d'un fragment
+     * @param fragment
+     * @param container
+     */
     public void addFragment(Fragment fragment, int container) {
         getSupportFragmentManager().beginTransaction()// begin  FragmentTransaction
                 .add(container, fragment)                               // add    Fragment
                 .commit();
     }
 
+    /**
+     * remplacement d'un fragment
+     * @param fragment le nouveau
+     * @param container
+     */
     public void replaceFragment(Fragment fragment, int container) {
         getSupportFragmentManager()
                 .beginTransaction()
@@ -69,7 +82,10 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
-
+    /**
+     * mise en place du fragment detail event
+     * @param v
+     */
     public void getInformation(View v) {
         detailFragment.setAttribute(getContentResolver(), recyclerFragment.position);
 /*            if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
@@ -113,14 +129,6 @@ public class MainActivity extends AppCompatActivity {
 
     public ListEvent getRecyclerFragment() {
         return recyclerFragment;
-    }
-
-    public InfoEvent getDetailFragment() {
-        return detailFragment;
-    }
-
-    public AdvancedSearch getSearchFragment() {
-        return searchFragment;
     }
 
     public void dialog(View view) {

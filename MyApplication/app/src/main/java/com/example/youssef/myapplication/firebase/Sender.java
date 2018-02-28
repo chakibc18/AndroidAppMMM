@@ -24,16 +24,17 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
+ * Notre classe pour le dialog d'envoi d'une notification
  * Created by youssef on 18/02/18.
  */
 
 public class Sender {
     private final static String pass = "0000";
     private final String key = "AAAA0VwG5e8:APA91bFRNSIowRIYsCEVSL-7JIYhbewb-h-lCRNj0tZpX4tIIP4GlsyxM-Ki2iVZl3PP2LluVwPC33WN94oVi2S1NERoMCeKIExd5MEmKcpvMPkkiEe5stfzv8Ad8IFIv42jIQeQrgQI";
-    Dialog push_dialog;
-    Button push_button;
-    TextView push_text;
-    TextView push_pass;
+    private Dialog push_dialog;
+    private Button push_button;
+    private TextView push_text;
+    private TextView push_pass;
 
     public Sender(Activity activity) {
         push_dialog = new Dialog(activity);

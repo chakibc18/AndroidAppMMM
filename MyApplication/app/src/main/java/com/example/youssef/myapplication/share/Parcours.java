@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Notre classe model pour le parcours
  * Created by youssef on 26/12/17.
  */
 
 public class Parcours {
 
-    List<Item> parcours;
-    TwitterUtil twitterUtil;
+    private List<Item> parcours;
+    private TwitterUtil twitterUtil;
 
     public Parcours(TwitterUtil twitterUtil) {
 
@@ -21,11 +22,6 @@ public class Parcours {
 
     public void add(Item i) {
         parcours.add(i);
-    }
-
-
-    public void remove(Item i) {
-        parcours.remove(i);
     }
 
     public boolean isIn(Item i) {

@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * Notre classe pour récuperer les information d'un event pour l'inscription
  * Created by youssef on 24/02/18.
  */
 

@@ -24,15 +24,16 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * Notre classe pour le fragment de la recherche avancée par date et mot-clé
  * Created by youssef on 30/12/17.
  */
 
 public class AdvancedSearch extends Fragment {
-    ListEvent listEvent;
-    DatePicker datePicker;
-    TextView date;
-    MainActivity activity;
-    String[] arrayArgs;
+    private ListEvent listEvent;
+    private DatePicker datePicker;
+    private TextView date;
+    private MainActivity activity;
+    private String[] arrayArgs;
 
 
     public void setListEvent(ListEvent listEvent) {
@@ -50,10 +51,13 @@ public class AdvancedSearch extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         this.activity = (MainActivity) getActivity();
-        advancedSearch();
+        advancedSearchDate();
     }
 
-    public void advancedSearch() {
+    /**
+     * La methode qui gere les information du fomulaire date de la recherche avancée
+     */
+    public void advancedSearchDate() {
         date = (TextView) activity.findViewById(R.id.date);
         final Dialog dialog = new Dialog(activity);
         dialog.setContentView(R.layout.date_picker);
@@ -82,6 +86,9 @@ public class AdvancedSearch extends Fragment {
 
     }
 
+    /**
+     * La methode qui lance la recherche avancée en appuyant sur le bouton
+     */
     public void search() {
         Button button = (Button) activity.findViewById(R.id.button_search);
         button.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +102,10 @@ public class AdvancedSearch extends Fragment {
         });
     }
 
+    /**
+     * récuperation des données saisies par l'utilisateur
+     * @return un objet contenant les données récupérés
+     */
     public SearchArgs getArgs() {
         TextView searchedView = (TextView) activity.findViewById(R.id.searched);
         String searched = String.valueOf(searchedView.getText());
@@ -113,7 +124,11 @@ public class AdvancedSearch extends Fragment {
         return new SearchArgs(searched, checkedRadio == R.id.mot_cle, checkedRadio == R.id.theme, date);
     }
 
-
+    /**
+     * conversion objet string vers date
+     * @param charSequence
+     * @return
+     */
     public Date stringToDate(CharSequence charSequence) {
         Date date = new Date();
         String s = String.valueOf(charSequence);
@@ -124,7 +139,11 @@ public class AdvancedSearch extends Fragment {
         return date;
     }
 
-
+    /**
+     *builder de la selection et les arguments de la selection pour la requete SQL
+     * @param searchArgs
+     * @return
+     */
     public Pair<String, String[]> buildSelection(SearchArgs searchArgs) {
 
 
@@ -169,7 +188,9 @@ public class AdvancedSearch extends Fragment {
 
     }
 
-
+    /**
+     * modeldes arguments de notre recherche avancées
+     */
     public class SearchArgs {
 
         private String searched;

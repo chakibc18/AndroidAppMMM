@@ -10,6 +10,7 @@ import com.twitter.sdk.android.core.TwitterConfig;
 import com.twitter.sdk.android.tweetcomposer.TweetComposer;
 
 /**
+ * Classe utilitaire pour Twitter
  * Created by youssef on 28/12/17.
  */
 

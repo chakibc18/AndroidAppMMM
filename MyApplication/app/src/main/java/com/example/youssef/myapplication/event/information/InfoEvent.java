@@ -28,18 +28,20 @@ import com.example.youssef.myapplication.registration.Register;
 import com.example.youssef.myapplication.share.ShareClass;
 
 /**
+ * Fragement de l'affichage d'un evenement ainsi que les fonctionnalités :
+ * notification,vote, parcours
  * Created by youssef on 24/12/17.
  */
 
 public class InfoEvent extends Fragment {
 
-    RatingUtil rating;
-    Dialog vote_dialog;
-    Sender sender;
-    WebView webView;
-    ProgressBar spinner;
-    int position;
-    ContentResolver resolver;
+    private RatingUtil rating;
+    private Dialog vote_dialog;
+    private Sender sender;
+    private WebView webView;
+    private ProgressBar spinner;
+    private int position;
+    private ContentResolver resolver;
     private String lien = "";
     private String title = "";
     private boolean register = false;
@@ -114,7 +116,9 @@ public class InfoEvent extends Fragment {
         shareClass.setItem(position, title, lien);
     }
 
-
+    /**
+     *
+     */
     private void setPushNotification() {
         Button notify_button = (Button) getActivity().findViewById(R.id.notify_button);
 
@@ -134,16 +138,25 @@ public class InfoEvent extends Fragment {
         vote_dialog.setContentView(R.layout.vote_dialog);
     }
 
+    /**
+     * methode de gestion du dialog de vote
+     */
     public void dialog() {
         if (!isRated) {
             vote_dialog.show();
         } else Toast.makeText(getActivity(), "Vous avez deja voté..!!", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * annulation d'un vote
+     */
     public void cancel() {
         vote_dialog.cancel();
     }
 
+    /**
+     * confirmation d'un vote
+     */
     public void confirm() {
         BaseRatingBar vote = (BaseRatingBar) vote_dialog.findViewById(R.id.voteBar);
         rating.updateRating(vote.getRating());
@@ -151,6 +164,9 @@ public class InfoEvent extends Fragment {
         vote_dialog.cancel();
     }
 
+    /**
+     * construction de la vue de l'event
+     */
     void setView() {
 
         Button register_button = (Button) getActivity().findViewById(R.id.register_button);
@@ -184,6 +200,9 @@ public class InfoEvent extends Fragment {
         return position;
     }
 
+    /**
+     * mise a jour du vote
+     */
     public void updateVoteState() {
         ContentValues con = new ContentValues();
         con.put(DbContract.MenuEntry.COLUMN_VOTE, "true");

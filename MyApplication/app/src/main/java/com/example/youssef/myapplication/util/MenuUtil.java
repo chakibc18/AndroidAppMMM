@@ -14,6 +14,7 @@ import static android.view.inputmethod.EditorInfo.IME_ACTION_DONE;
 import static android.view.inputmethod.EditorInfo.IME_FLAG_NO_EXTRACT_UI;
 
 /**
+ * Notre classe gerant les fonctionnalités offertes depuis la barre menu
  * Created by youssef on 31/12/17.
  */
 

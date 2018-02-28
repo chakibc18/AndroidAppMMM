@@ -22,6 +22,7 @@ import com.example.youssef.myapplication.R;
 import com.example.youssef.myapplication.data.DbContract;
 
 /**
+ * Fragement de la vue de la liste des event
  * Created by youssef on 23/12/17.
  */
 
