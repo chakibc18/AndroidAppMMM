@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">testTwtt</string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">AoFVL2Q8dMRBybnHr8bJ0yVXF</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">qkTfU27H2mD7XloNmMIYATY0ut9bp4QiEV3CwLX6pflpgiX6n6</string>
+</resources>

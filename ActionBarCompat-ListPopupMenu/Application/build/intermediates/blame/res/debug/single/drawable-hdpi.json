@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/home/youssef/AndroidStudioProjects/ActionBarCompat-ListPopupMenu/Application/build/intermediates/res/merged/debug/drawable-hdpi/ic_overflow.png",
+        "source": "/home/youssef/AndroidStudioProjects/ActionBarCompat-ListPopupMenu/Application/src/main/res/drawable-hdpi/ic_overflow.png"
+    },
+    {
+        "merged": "/home/youssef/AndroidStudioProjects/ActionBarCompat-ListPopupMenu/Application/build/intermediates/res/merged/debug/drawable-hdpi/ic_launcher.png",
+        "source": "/home/youssef/AndroidStudioProjects/ActionBarCompat-ListPopupMenu/Application/src/main/res/drawable-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/youssef/AndroidStudioProjects/ActionBarCompat-ListPopupMenu/Application/build/intermediates/res/merged/debug/drawable-hdpi/tile.9.png",
+        "source": "/home/youssef/AndroidStudioProjects/ActionBarCompat-ListPopupMenu/Application/src/main/res/drawable-hdpi/tile.9.png"
+    }
+]

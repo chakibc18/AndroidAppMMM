@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SqlitSample</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="view_data">View</string>
+    <string name="add_user">Add</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+</resources>
